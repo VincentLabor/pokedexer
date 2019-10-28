@@ -8,7 +8,7 @@ const Navbar = () => {
                 <h1>Pokedex</h1>
                 <ul>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/'>About</Link></li>
+                    <li><Link to='/about'>About</Link></li>
                 </ul>
             </div>
         </Fragment>

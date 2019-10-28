@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react'
+import PokemonContext from '../context/pokemon/pokemonContext';
 
 const Search = () => {
-
-    const [pkname, setPkname] = useState("");
+    const pokemonContext = useContext(PokemonContext);
+    
+    const [pkmn, setPkmn] = useState(""); //Setting the state for this component
+  
+    
 
     const onChange = e => {
-        setPkname(e.target.value);
+        setPkmn(e.target.value);
     }
 
-    return(
-        <form>
-            <input type="text" name='pkname' value={pkname} onChange={onChange} placeholder="Search for Pokemon!"/>
+    const onSubmit = e => {
+        e.preventDefault(); //Prevents a new page from opening. 
+        pokemonContext.searchPokemon(pkmn)
+       // pokemonContext.findDitto();
+    }
+
+    return (
+        <form onSubmit={onSubmit}>
+            <input type="text" name="pkmn" value={pkmn} onChange={onChange} placeholder="Search for a pokemon" />
+            <input type="submit" />
         </form>
     )
 }
