@@ -1,4 +1,4 @@
-import { GET_POKEMON, TESTER } from '../types';
+import { GET_POKEMON, GET_SPRITE} from '../types';
 
 export default (state, action) => {
     switch (action.type) {
@@ -7,10 +7,10 @@ export default (state, action) => {
                 ...state,
                 pokemon: action.payload
             }
-            case TESTER:
+            case GET_SPRITE:
                 return{
                     ...state,
-                    dittor: action.payload
+                    sprite: action.payload
                 }
         default:
             return state;
