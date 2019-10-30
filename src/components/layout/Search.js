@@ -6,6 +6,7 @@ const Search = () => {
     
     const [pkmn, setPkmn] = useState(""); //Setting the state for this component
   
+    const {searchPokemon, getSprite, getDexEntry, getPokeName} = pokemonContext;
     
 
     const onChange = e => {
@@ -14,10 +15,11 @@ const Search = () => {
 
     const onSubmit = e => {
         e.preventDefault(); //Prevents a new page from opening. 
-        pokemonContext.searchPokemon(pkmn);
-        pokemonContext.getSprite(pkmn);
-        pokemonContext.getDexEntry(pkmn);
-        setPkmn("")
+        searchPokemon(pkmn);
+        getSprite(pkmn);
+        getDexEntry(pkmn);
+        getPokeName(pkmn);
+        setPkmn("");
        // pokemonContext.findDitto();
     }
 
