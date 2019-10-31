@@ -15,10 +15,10 @@ const Search = () => {
 
     const onSubmit = e => {
         e.preventDefault(); //Prevents a new page from opening. 
-        searchPokemon(pkmn);
-        getSprite(pkmn);
-        getDexEntry(pkmn);
-        getPokeName(pkmn);
+        searchPokemon(pkmn.toLowerCase());
+        getSprite(pkmn.toLowerCase());
+        getDexEntry(pkmn.toLowerCase());
+        getPokeName(pkmn.toLowerCase());
         setPkmn("");
        // pokemonContext.findDitto();
     }
