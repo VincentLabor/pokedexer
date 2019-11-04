@@ -7,7 +7,8 @@ import {
     SET_LOADING,
     GET_SPRITE,
     GET_DEXENTRY,
-    GET_POKEMON_NAME
+    GET_POKEMON_NAME,
+    GET_TYPES
 } from '../types';
 
 
@@ -17,6 +18,7 @@ const PokemonState = (props) => {
         sprite: '',
         dexEntry: '',
         pokeName: '',
+        pokeType: [],
         loading: false
     }
 
@@ -38,7 +40,7 @@ const PokemonState = (props) => {
             type: GET_POKEMON_NAME,
             payload: res.data.name.charAt(0).toUpperCase() + res.data.name.slice(1)
         })
-        
+
     };
 
     const getSprite = async (pkmn) => {
@@ -48,15 +50,14 @@ const PokemonState = (props) => {
             type: GET_SPRITE,
             payload: res.data.sprites
         })
-
     }
 
     const getDexEntry = async (pkmn) => {
         setLoading();
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pkmn}/`);
 
-        for(let i=0;i<5;i++){
-            if (res.data.flavor_text_entries[i].language.name === "en"){
+        for (let i = 0; i < 5; i++) {
+            if (res.data.flavor_text_entries[i].language.name === "en") {
                 dispatch({
                     type: GET_DEXENTRY,
                     payload: res.data.flavor_text_entries[i].flavor_text
@@ -64,6 +65,25 @@ const PokemonState = (props) => {
             }
         }
     }
+
+    const getPokeType = async pkmn => {
+        setLoading();
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
+
+        
+            dispatch({
+                type: GET_TYPES,
+                payload: res.data.types
+            })
+            console.log(res.data.types)
+        
+    };
+
+    // dispatch({
+    //     type: GET_TYPES,
+    //     payload: res.data.type
+    // })
+    // console.log(res.data)
 
     const setLoading = () => {
         dispatch({
@@ -78,10 +98,13 @@ const PokemonState = (props) => {
             dexEntry: state.dexEntry,
             loading: state.loading,
             pokeName: state.pokeName,
+            pokeType: state.pokeType,
             searchPokemon,
             getSprite,
             getDexEntry,
-            getPokeName
+            getPokeName,
+            getPokeType,
+
         }}
     >
         {props.children}

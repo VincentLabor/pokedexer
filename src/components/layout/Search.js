@@ -6,7 +6,7 @@ const Search = () => {
     
     const [pkmn, setPkmn] = useState(""); //Setting the state for this component
   
-    const {searchPokemon, getSprite, getDexEntry, getPokeName} = pokemonContext;
+    const {searchPokemon, getSprite, getDexEntry, getPokeName, getPokeType} = pokemonContext;
     
 
     const onChange = e => {
@@ -19,8 +19,8 @@ const Search = () => {
         getSprite(pkmn.toLowerCase());
         getDexEntry(pkmn.toLowerCase());
         getPokeName(pkmn.toLowerCase());
+        getPokeType(pkmn.toLowerCase());
         setPkmn("");
-       // pokemonContext.findDitto();
     }
 
     return (
