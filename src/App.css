@@ -105,3 +105,12 @@ text-align: center;
   justify-content: center;
 }
 
+.space-between{
+margin: 0 .5em;
+}
+
+.pokeType{
+  border: 1px solid black;
+  padding: .5em;
+  border-radius: 5px;
+}

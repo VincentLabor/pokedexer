@@ -1,13 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const TypeItem = ({eleType:{type}}) => {
-    return (
-        <div>
-            <h1>
-                {type.name}
-            </h1>
-        </div>
-    )
-}
+const TypeItem = ({ eleType: { type } }) => {
+  return (
+    <div>
+      <p className='space-between pokeType'>
+        <strong>
+          {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+        </strong>
+      </p>
+    </div>
+  );
+};
 
-export default TypeItem
+export default TypeItem;

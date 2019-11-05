@@ -19,7 +19,8 @@ const PokemonState = (props) => {
         dexEntry: '',
         pokeName: '',
         pokeType: [],
-        loading: false
+        loading: false,
+        isShiny: false
     }
 
     const [state, dispatch] = useReducer(pokemonReducer, initialState);
@@ -56,7 +57,7 @@ const PokemonState = (props) => {
         setLoading();
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pkmn}/`);
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 5; i++) { //When you use a for loop or a for each, this only displays the last entry available. 
             if (res.data.flavor_text_entries[i].language.name === "en") {
                 dispatch({
                     type: GET_DEXENTRY,
@@ -70,20 +71,13 @@ const PokemonState = (props) => {
         setLoading();
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
 
-        
-            dispatch({
-                type: GET_TYPES,
-                payload: res.data.types
-            })
-            console.log(res.data.types)
-        
-    };
+        dispatch({
+            type: GET_TYPES,
+            payload: res.data.types //This displays numbered stuff which is okay. 
+        })
+        console.log(res.data.types)
 
-    // dispatch({
-    //     type: GET_TYPES,
-    //     payload: res.data.type
-    // })
-    // console.log(res.data)
+    };
 
     const setLoading = () => {
         dispatch({
