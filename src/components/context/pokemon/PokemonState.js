@@ -8,7 +8,8 @@ import {
     GET_SPRITE,
     GET_DEXENTRY,
     GET_POKEMON_NAME,
-    GET_TYPES
+    GET_TYPES,
+    SEARCH_FAIL
 } from '../types';
 
 
@@ -27,11 +28,21 @@ const PokemonState = (props) => {
 
     const searchPokemon = async pkmn => {
         setLoading();
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
-        dispatch({
-            type: GET_POKEMON,
-            payload: res.data
-        })
+
+        try {
+            const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
+            dispatch({
+                type: GET_POKEMON,
+                payload: res.data
+            })
+
+        } catch (error) {
+            dispatch({
+                type: SEARCH_FAIL,
+                payload: error.response.data.msg
+            })
+            console.log(error.response.data.msg);
+        }
     };
 
     const getPokeName = async pkmn => {
@@ -75,8 +86,6 @@ const PokemonState = (props) => {
             type: GET_TYPES,
             payload: res.data.types //This displays numbered stuff which is okay. 
         })
-        console.log(res.data.types)
-
     };
 
     const setLoading = () => {

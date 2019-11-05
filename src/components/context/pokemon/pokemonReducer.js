@@ -1,4 +1,4 @@
-import { GET_POKEMON, GET_SPRITE, GET_DEXENTRY, SET_LOADING, GET_POKEMON_NAME, GET_TYPES } from '../types';
+import { GET_POKEMON, GET_SPRITE, GET_DEXENTRY, SET_LOADING, GET_POKEMON_NAME, GET_TYPES, SEARCH_FAIL } from '../types';
 
 export default (state, action) => {
     switch (action.type) {
@@ -36,6 +36,17 @@ export default (state, action) => {
             return {
                 ...state,
                 loading: true
+            }
+        case SEARCH_FAIL:
+            return {
+                ...state,
+                pokemon: '',
+                sprite: '',
+                dexEntry: '',
+                pokeName: '',
+                pokeType: '',
+                loading: '',
+                isShiny: '',
             }
         default:
             return state;

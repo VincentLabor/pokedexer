@@ -4,6 +4,7 @@ export const GET_SPRITE = 'SET_SPRITE';
 export const GET_DEXENTRY = 'GET_DEXENTRY';
 export const GET_POKEMON_NAME = 'GET_POKEMON_NAME';
 export const GET_TYPES = 'GET_TYPES';
+export const SEARCH_FAIL = 'GET_TYPES';
 
 
 
