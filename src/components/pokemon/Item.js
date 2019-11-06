@@ -25,10 +25,6 @@ const Item = () => {
                 <PokeTypes />
             </div>
             <p className='pokeData'>{dexEntry}</p>
-            <div className="spriteHolder">
-                <img src={sprite.front_default} alt="" className='sprites' />
-                <img src={sprite.back_default} alt="" className='sprites' />
-            </div>
         </Fragment>
     )
 }

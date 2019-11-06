@@ -23,7 +23,8 @@ const Sprites = () => {
                 <img src={!isShiny ? sprite.back_default : sprite.back_shiny} alt="" className='sprites' onClick={onClick} />
 
             </div>
-            <p>Want to see the shiny version? Click on the pokemon!</p>
+            {sprite ? (<p className='clickSprite'>Want to see the shiny version? Click on the pokemon!</p>) : null}
+
         </Fragment>
     )
 }

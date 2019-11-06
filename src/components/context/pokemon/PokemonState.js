@@ -37,10 +37,6 @@ const PokemonState = (props) => {
             })
 
         } catch (error) {
-            dispatch({
-                type: SEARCH_FAIL,
-                payload: error.response.data.msg
-            })
             console.log(error.response.data.msg);
         }
     };

@@ -114,3 +114,9 @@ margin: 0 .5em;
   padding: .5em;
   border-radius: 5px;
 }
+
+.clickSprite{
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+}

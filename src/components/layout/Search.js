@@ -25,7 +25,7 @@ const Search = () => {
 
     return (
         <form onSubmit={onSubmit} className="pkSearch">
-            <input type="text" name="pkmn" value={pkmn} onChange={onChange} placeholder="E.g. Lugia, Rhyhorn, Swampert, etc..." className='search'/>
+            <input type="text" name="pkmn" value={pkmn} onChange={onChange} placeholder="E.g. Lugia, Rhyhorn, Swampert, etc..." className='search' required/>
             <input type="submit" value="Go" className='goSubmit'/>
         </form>
     )
