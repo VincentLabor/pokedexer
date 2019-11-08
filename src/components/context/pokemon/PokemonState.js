@@ -9,7 +9,10 @@ import {
     GET_DEXENTRY,
     GET_POKEMON_NAME,
     GET_TYPES,
-    SEARCH_FAIL
+    SEARCH_FAIL,
+    GET_EVOLUTIONS,
+    SAVE_API,
+    HAVE_EVOLUTION
 } from '../types';
 
 
@@ -20,8 +23,12 @@ const PokemonState = (props) => {
         dexEntry: '',
         pokeName: '',
         pokeType: [],
+        api: '',
+        evolutions: '',
+        evolveChain: '',
         loading: false,
-        isShiny: false
+        isShiny: false,
+        haveEvolution: null
     }
 
     const [state, dispatch] = useReducer(pokemonReducer, initialState);
@@ -37,7 +44,7 @@ const PokemonState = (props) => {
             })
 
         } catch (error) {
-            console.log(error.response.data.msg);
+
         }
     };
 
@@ -48,22 +55,44 @@ const PokemonState = (props) => {
             type: GET_POKEMON_NAME,
             payload: res.data.name.charAt(0).toUpperCase() + res.data.name.slice(1)
         })
-
     };
 
     const getSprite = async (pkmn) => {
         setLoading();
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
+
         dispatch({
             type: GET_SPRITE,
             payload: res.data.sprites
         })
     }
 
+    const getEvolutions = async (pkmn) => {
+        setLoading();
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pkmn}/`);
+        dispatch({
+            type: GET_EVOLUTIONS,
+            payload: res.data.evolution_chain.url
+        })
+        const res2 = await axios.get(res.data.evolution_chain.url);
+        dispatch({
+            type: SAVE_API,
+            payload: res2.data.chain.evolves_to
+        })
+        if (res2.data.chain.evolves_to.length === 1) {
+            checkEvolution();
+        }
+        console.log(res2.data.chain.evolves_to.length)
+    }
+
+    const checkEvolution = () => {
+        dispatch({ type: HAVE_EVOLUTION })
+    }
+
+
     const getDexEntry = async (pkmn) => {
         setLoading();
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pkmn}/`);
-
         for (let i = 0; i < 5; i++) { //When you use a for loop or a for each, this only displays the last entry available. 
             if (res.data.flavor_text_entries[i].language.name === "en") {
                 dispatch({
@@ -98,12 +127,16 @@ const PokemonState = (props) => {
             loading: state.loading,
             pokeName: state.pokeName,
             pokeType: state.pokeType,
+            evolveChain: state.evolveChain,
+            haveEvolution: state.haveEvolution,
+            api: state.api,
             searchPokemon,
             getSprite,
             getDexEntry,
             getPokeName,
             getPokeType,
-
+            getEvolutions,
+            checkEvolution
         }}
     >
         {props.children}

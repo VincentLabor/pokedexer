@@ -6,7 +6,7 @@ const Search = () => {
     
     const [pkmn, setPkmn] = useState(""); //Setting the state for this component
   
-    const {searchPokemon, getSprite, getDexEntry, getPokeName, getPokeType} = pokemonContext;
+    const {searchPokemon, getSprite, getDexEntry, getPokeName, getPokeType, getEvolutions,serveEvolutions} = pokemonContext;
     
 
     const onChange = e => {
@@ -20,6 +20,7 @@ const Search = () => {
         getDexEntry(pkmn.toLowerCase());
         getPokeName(pkmn.toLowerCase());
         getPokeType(pkmn.toLowerCase());
+        getEvolutions(pkmn);
         setPkmn("");
     }
 

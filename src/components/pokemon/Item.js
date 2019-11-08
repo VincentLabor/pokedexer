@@ -1,12 +1,13 @@
 import React, { useContext, Fragment } from 'react';
 import PokemonContext from '../context/pokemon/pokemonContext';
 import Spinner from '../layout/Spinner';
-import PokeTypes from './Types/PokeTypes.js';
+import PokeTypes from './Types/PokeTypes';
 import Sprites from './sprites/Sprites';
+import PokeEvolutions from './evolutions/PokeEvolutions';
 
 const Item = () => {
     const pokemonContext = useContext(PokemonContext);
-    const { sprite, pokemon, dexEntry, loading, pokeName } = pokemonContext;
+    const { pokemon, dexEntry, loading, pokeName, ha } = pokemonContext;
 
     const pokedexNum = pokemon.id;
 
@@ -25,6 +26,9 @@ const Item = () => {
                 <PokeTypes />
             </div>
             <p className='pokeData'>{dexEntry}</p>
+            <div>
+                <PokeEvolutions />
+            </div>
         </Fragment>
     )
 }
