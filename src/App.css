@@ -120,3 +120,8 @@ margin: 0 .5em;
   display: flex;
   justify-content: center;
 }
+
+.evolutions{
+  display: flex;
+  justify-content: center;
+}

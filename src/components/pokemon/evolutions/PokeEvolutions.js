@@ -8,7 +8,7 @@ const PokeEvolutions = ()=>{
 
     return(
         <div>
-            {haveEvolution && <h3>Evolutions</h3>}
+            {haveEvolution && <h3 className='evolutions'>Evolutions</h3>}
         </div>
     );
 }
