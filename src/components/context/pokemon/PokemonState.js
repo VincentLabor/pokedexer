@@ -27,7 +27,8 @@ const PokemonState = props => {
     evolveChain: "",
     loading: false,
     isShiny: false,
-    haveEvolution: null
+    haveEvolution: null,
+    searchError: null
   };
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
@@ -41,8 +42,8 @@ const PokemonState = props => {
         type: GET_POKEMON,
         payload: res.data
       });
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
       dispatch({
         type: SEARCH_FAIL
       });
@@ -140,6 +141,7 @@ const PokemonState = props => {
         pokeType: state.pokeType,
         evolveChain: state.evolveChain,
         haveEvolution: state.haveEvolution,
+        searchError: state.searchError,
         api: state.api,
         searchPokemon,
         getSprite,

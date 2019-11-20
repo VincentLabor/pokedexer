@@ -76,7 +76,8 @@ export default (state, action) => {
         evolveChain: "",
         loading: false,
         isShiny: false,
-        haveEvolution: null
+        haveEvolution: null,
+        searchError: true
       };
     default:
       return state;

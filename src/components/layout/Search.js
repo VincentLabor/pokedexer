@@ -8,7 +8,7 @@ const Search = () => {
     
     const [pkmn, setPkmn] = useState(""); //Setting the state for this component
   
-    const {searchPokemon, getSprite, getDexEntry, getPokeName, getPokeType, getEvolutions,serveEvolutions} = pokemonContext;
+    const {searchPokemon, getSprite, getDexEntry, getPokeName, getPokeType, getEvolutions,serveEvolutions, error} = pokemonContext;
     // const {setAlert} = alertContext;
 
     const onChange = e => {
@@ -25,6 +25,11 @@ const Search = () => {
         getPokeType(pkmn.toLowerCase());
         getEvolutions(pkmn);
         setPkmn("");
+
+        if (error === true){ //This comes from the pokemon state that trigger when a 404 is reached from the api.
+            alertContext.setAlert("The Pokemon you searched for cannot be found. Please check your spelling")
+            
+        }
     }
 
     return (
