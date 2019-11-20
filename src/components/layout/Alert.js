@@ -7,9 +7,12 @@ const alertContext = useContext(AlertContext);
 const pokemonContext = useContext(PokemonContext);
 
 const {searchError} = pokemonContext;
+const {alert} = alertContext;
 
-  return ( searchError !== null && (<div id='snackbar 'className='show'>
-      The Pokemon you searched for cannot be found. Please check your spelling
+
+
+  return ( searchError !== null && (<div id='snackbar 'className='show' >
+      {searchError}
   </div>))
 };
 
@@ -19,3 +22,8 @@ export default Alert;
 // return (<div id='snackbar 'className='show'>
 // The Pokemon you searched for cannot be found. Please check your spelling
 // </div>)
+
+// const closeOut = ()=>{
+//     setTimeout(() => {
+//       }, 7000);
+// }

@@ -12,7 +12,8 @@ import {
   SEARCH_FAIL,
   GET_EVOLUTIONS,
   SAVE_API,
-  HAVE_EVOLUTION
+  HAVE_EVOLUTION,
+  REVERT
 } from "../types";
 
 const PokemonState = props => {
@@ -47,6 +48,15 @@ const PokemonState = props => {
       dispatch({
         type: SEARCH_FAIL
       });
+
+      setTimeout(() => dispatch({type: REVERT}), 7000);
+
+      // setTimeout(()=>{
+      //   dispatch({
+      //     type: REVERT
+      //   }, 7000)
+      // })
+
     }
   };
 

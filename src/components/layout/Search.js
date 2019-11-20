@@ -28,7 +28,6 @@ const Search = () => {
 
         if (error === true){ //This comes from the pokemon state that trigger when a 404 is reached from the api.
             alertContext.setAlert("The Pokemon you searched for cannot be found. Please check your spelling")
-            
         }
     }
 

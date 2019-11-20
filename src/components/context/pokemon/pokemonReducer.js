@@ -8,7 +8,8 @@ import {
   SEARCH_FAIL,
   GET_EVOLUTIONS,
   SAVE_API,
-  HAVE_EVOLUTION
+  HAVE_EVOLUTION,
+  REVERT
 } from "../types";
 
 export default (state, action) => {
@@ -77,8 +78,13 @@ export default (state, action) => {
         loading: false,
         isShiny: false,
         haveEvolution: null,
-        searchError: true
+        searchError: "The Pokemon you searched for cannot be found. Please check your spelling"
       };
+      case REVERT:
+        return{
+          ...state,
+          searchError: null
+        }
     default:
       return state;
   }

@@ -11,6 +11,7 @@ export const SAVE_API = 'SAVE_API';
 export const HAVE_EVOLUTION = 'HAVE_EVOLUTION';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT'; 
+export const REVERT = 'REVERT'; 
 
 
 
