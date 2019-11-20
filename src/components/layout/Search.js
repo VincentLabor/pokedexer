@@ -8,7 +8,7 @@ const Search = () => {
     
     const [pkmn, setPkmn] = useState(""); //Setting the state for this component
   
-    const {searchPokemon, getSprite, getDexEntry, getPokeName, getPokeType, getEvolutions,serveEvolutions, error} = pokemonContext;
+    const {searchPokemon, getSprite, getDexEntry, getPokeName, getPokeType, getEvolutions, error} = pokemonContext;
     // const {setAlert} = alertContext;
 
     const onChange = e => {

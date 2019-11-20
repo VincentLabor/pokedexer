@@ -31,6 +31,3 @@ const Sprites = () => {
 
 export default Sprites
 
-
-{/* <img src={sprite.front_default} alt="" className='sprites' onClick={onClick} />
-<img src={sprite.back_default} alt="" className='sprites' onClick={onClick} /> */}

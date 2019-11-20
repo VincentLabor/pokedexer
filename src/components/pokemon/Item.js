@@ -7,7 +7,7 @@ import PokeEvolutions from './evolutions/PokeEvolutions';
 
 const Item = () => {
     const pokemonContext = useContext(PokemonContext);
-    const { pokemon, dexEntry, loading, pokeName, ha } = pokemonContext;
+    const { pokemon, dexEntry, loading, pokeName } = pokemonContext;
 
     const pokedexNum = pokemon.id;
 

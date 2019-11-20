@@ -49,7 +49,7 @@ const PokemonState = props => {
         type: SEARCH_FAIL
       });
 
-      setTimeout(() => dispatch({type: REVERT}), 7000);
+      setTimeout(() => dispatch({type: REVERT}), 6400);
 
       // setTimeout(()=>{
       //   dispatch({
