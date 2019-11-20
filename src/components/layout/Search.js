@@ -17,14 +17,18 @@ const Search = () => {
 
     const onSubmit = e => {
         e.preventDefault(); //Prevents a new page from opening. 
-
-        searchPokemon(pkmn.toLowerCase());
-        getSprite(pkmn.toLowerCase());
-        getDexEntry(pkmn.toLowerCase());
-        getPokeName(pkmn.toLowerCase());
-        getPokeType(pkmn.toLowerCase());
-        getEvolutions(pkmn);
-        setPkmn("");
+try {
+    searchPokemon(pkmn.toLowerCase());
+     getSprite(pkmn.toLowerCase());
+    getDexEntry(pkmn.toLowerCase());
+    getPokeName(pkmn.toLowerCase());
+    getPokeType(pkmn.toLowerCase());
+    getEvolutions(pkmn);
+    setPkmn("");
+} catch (error) {
+    console.log(error)
+}
+       
 
         if (error === true){ //This comes from the pokemon state that trigger when a 404 is reached from the api.
             alertContext.setAlert("The Pokemon you searched for cannot be found. Please check your spelling")
