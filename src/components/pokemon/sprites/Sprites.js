@@ -18,12 +18,12 @@ const Sprites = () => {
 
     return (
         <Fragment>
-            <div className='spriteHolder'>
+            <div className='centers'>
                 <img src={!isShiny ? sprite.front_default : sprite.front_shiny} alt="" className='sprites' onClick={onClick} />
                 <img src={!isShiny ? sprite.back_default : sprite.back_shiny} alt="" className='sprites' onClick={onClick} />
 
             </div>
-            {sprite ? (<p className='clickSprite'>Want to see the shiny version? Click on the pokemon!</p>) : null}
+            {sprite ? (<p className='clickSprite centers'>Want to see the shiny version? Click on the pokemon!</p>) : null}
 
         </Fragment>
     )
