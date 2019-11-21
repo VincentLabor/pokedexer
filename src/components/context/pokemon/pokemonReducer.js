@@ -9,7 +9,9 @@ import {
   GET_EVOLUTIONS,
   SAVE_API,
   HAVE_EVOLUTION,
-  REVERT
+  REVERT,
+  STORE_EVOLUTIONS,
+  STORE_2ND_EVO
 } from "../types";
 
 export default (state, action) => {
@@ -64,6 +66,16 @@ export default (state, action) => {
         ...state,
         haveEvolution: true
       };
+      case STORE_EVOLUTIONS:
+        return {
+          ...state,
+          evo1: action.payload
+        }
+      case STORE_2ND_EVO:
+        return {
+          ...state,
+          evo2: action.payload
+        }
     case SEARCH_FAIL:
       return {
         ...state,

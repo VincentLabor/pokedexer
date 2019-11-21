@@ -13,8 +13,11 @@ import {
   GET_EVOLUTIONS,
   SAVE_API,
   HAVE_EVOLUTION,
-  REVERT
+  REVERT,
+  STORE_EVOLUTIONS,
+  STORE_2ND_EVO
 } from "../types";
+import { async } from "q";
 
 const PokemonState = props => {
   const initialState = {
@@ -25,11 +28,13 @@ const PokemonState = props => {
     pokeType: [],
     api: "",
     evolutions: "",
-    evolveChain: "",
+    evolveChain: [],
     loading: false,
     isShiny: false,
     haveEvolution: null,
-    searchError: null
+    searchError: null,
+    evo1: "",
+    evo2: ""
   };
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
@@ -39,6 +44,7 @@ const PokemonState = props => {
 
     try {
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
+
       dispatch({
         type: GET_POKEMON,
         payload: res.data
@@ -49,14 +55,7 @@ const PokemonState = props => {
         type: SEARCH_FAIL
       });
 
-      setTimeout(() => dispatch({type: REVERT}), 6400);
-
-      // setTimeout(()=>{
-      //   dispatch({
-      //     type: REVERT
-      //   }, 7000)
-      // })
-
+      setTimeout(() => dispatch({ type: REVERT }), 6400);
     }
   };
 
@@ -93,16 +92,36 @@ const PokemonState = props => {
       checkEvolution();
     }
 
-    const res2 = await axios.get(res.data.evolution_chain.url);
+    const res2 = await axios.get(res.data.evolution_chain.url); //This will reach to the evolution section of the API
     dispatch({
       type: SAVE_API,
       payload: res2.data.chain.evolves_to
     });
-    if (res2.data.chain.evolves_to.length === 1) {
-      checkEvolution();
-    }
+
+    dispatch({
+      type: STORE_EVOLUTIONS,
+      payload: res2.data.chain.evolves_to[0].species.name
+    });
+
+    const thirdResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`)
+
+    dispatch({
+      type: STORE_2ND_EVO,
+      payload: res2.data.chain.evolves_to[0].evolves_to[0].species.name
+    });
+
+    const fourthResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`)
+    
+
     console.log(res2.data.chain.evolves_to);
   };
+
+  // const displayEvo = async evolveChain => {
+  //   const res = await axios.get(evolveChain);
+
+  //   console.log(res);
+
+  // };
 
   const checkEvolution = () => {
     dispatch({ type: HAVE_EVOLUTION });
@@ -152,6 +171,8 @@ const PokemonState = props => {
         evolveChain: state.evolveChain,
         haveEvolution: state.haveEvolution,
         searchError: state.searchError,
+        evo1: state.evo1,
+        evo2: state.evo2,
         api: state.api,
         searchPokemon,
         getSprite,

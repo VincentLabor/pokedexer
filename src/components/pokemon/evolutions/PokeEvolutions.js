@@ -4,11 +4,12 @@ import PokemonContext from '../../context/pokemon/pokemonContext';
 const PokeEvolutions = ()=>{
     const pokemonContext = useContext(PokemonContext);
 
-    const {haveEvolution} = pokemonContext; 
+    const {haveEvolution, evo1,evo2} = pokemonContext; 
 
     return(
         <div>
-            {haveEvolution && <h3 className='evolutions'>Evolutions</h3>}
+           <h3 className='evolutions'>{evo1}</h3>
+           <h3 className='evolutions'>{evo2}</h3>
         </div>
     );
 }
