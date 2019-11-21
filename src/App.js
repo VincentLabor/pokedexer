@@ -5,7 +5,6 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import PokemonState from "./components/context/pokemon/PokemonState";
-import Alert from "./components/layout/Alert";
 import AlertState from "./components/context/alert/AlertState";
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
             <Navbar />
             <div className="container">
               <div className="alerts">
-              <Alert />
+              
               </div>
               
               <Switch>
