@@ -84,6 +84,11 @@ export default (state, action) => {
           ...state,
           evoSprite: action.payload
         }
+      case EVO_SPRITE_2:
+        return{
+          ...state,
+          evoSprite2: action.payload
+        }
     case SEARCH_FAIL:
       return {
         ...state,

@@ -104,8 +104,6 @@ const PokemonState = props => {
       payload: res2.data.chain.evolves_to
     });
 
-    console.log(res2);
-
     dispatch({
       //2nd Evolution
       type: STORE_EVOLUTIONS,
@@ -121,8 +119,6 @@ const PokemonState = props => {
       payload: thirdResponse.data.sprites.front_default
     });
 
-    console.log(thirdResponse);
-
     dispatch({
       //3rd evolution
       type: STORE_2ND_EVO,
@@ -130,8 +126,17 @@ const PokemonState = props => {
     });
 
     const fourthResponse = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`
+      `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].evolves_to[0].species.name}`
     );
+
+      console.log(fourthResponse);
+
+       dispatch({
+         type: EVO_SPRITE_2,
+         payload: fourthResponse.data.sprites.front_default
+       })
+
+
   };
 
   const checkEvolution = () => {
