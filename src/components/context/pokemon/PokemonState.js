@@ -15,9 +15,11 @@ import {
   HAVE_EVOLUTION,
   REVERT,
   STORE_EVOLUTIONS,
-  STORE_2ND_EVO
+  STORE_2ND_EVO,
+  CLEAR,
+  EVO_SPRITE_2,
+  EVO_SPRITE
 } from "../types";
-import { async } from "q";
 
 const PokemonState = props => {
   const initialState = {
@@ -34,7 +36,9 @@ const PokemonState = props => {
     haveEvolution: null,
     searchError: null,
     evo1: "",
-    evo2: ""
+    evo2: "",
+    evoSprite: "",
+    evoSprite2: ""
   };
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
@@ -44,6 +48,8 @@ const PokemonState = props => {
 
     try {
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
+
+      clearAll();
 
       dispatch({
         type: GET_POKEMON,
@@ -98,30 +104,35 @@ const PokemonState = props => {
       payload: res2.data.chain.evolves_to
     });
 
+    console.log(res2);
+
     dispatch({
+      //2nd Evolution
       type: STORE_EVOLUTIONS,
       payload: res2.data.chain.evolves_to[0].species.name
     });
 
-    const thirdResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`)
+    const thirdResponse = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`
+    );
 
     dispatch({
+      type: EVO_SPRITE,
+      payload: thirdResponse.data.sprites.front_default
+    });
+
+    console.log(thirdResponse);
+
+    dispatch({
+      //3rd evolution
       type: STORE_2ND_EVO,
       payload: res2.data.chain.evolves_to[0].evolves_to[0].species.name
     });
 
-    const fourthResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`)
-    
-
-    console.log(res2.data.chain.evolves_to);
+    const fourthResponse = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`
+    );
   };
-
-  // const displayEvo = async evolveChain => {
-  //   const res = await axios.get(evolveChain);
-
-  //   console.log(res);
-
-  // };
 
   const checkEvolution = () => {
     dispatch({ type: HAVE_EVOLUTION });
@@ -159,6 +170,12 @@ const PokemonState = props => {
     });
   };
 
+  const clearAll = () => {
+    dispatch({
+      type: CLEAR
+    });
+  };
+
   return (
     <PokemonContext.Provider
       value={{
@@ -174,6 +191,8 @@ const PokemonState = props => {
         evo1: state.evo1,
         evo2: state.evo2,
         api: state.api,
+        evoSprite: state.evoSprite,
+        evoSprite2: state.evoSprite2,
         searchPokemon,
         getSprite,
         getDexEntry,

@@ -14,6 +14,9 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const REVERT = 'REVERT'; 
 export const STORE_EVOLUTIONS = 'STORE_EVOLUTIONS'; 
 export const STORE_2ND_EVO = 'STORE_2ND_EVO'; 
+export const CLEAR = 'CLEAR'; 
+export const EVO_SPRITE_2 = 'EVO_SPRITE_2'; 
+export const EVO_SPRITE = 'EVO_SPRITE'; 
 
 
 

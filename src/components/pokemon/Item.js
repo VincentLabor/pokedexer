@@ -11,10 +11,6 @@ const Item = () => {
 
     const pokedexNum = pokemon.id;
 
-    const onSend = ()=>{
-        
-    }
-
     if (loading) {
         return <Spinner />
     }
@@ -23,7 +19,7 @@ const Item = () => {
     return (
         <Fragment>
             <div className="pokeContainer centers">
-                <p className='pokeNum centerText' onSend={onSend}>{pokedexNum === undefined ? "" : "#" + pokedexNum}</p>
+                <p className='pokeNum centerText'>{pokedexNum === undefined ? "" : "#" + pokedexNum}</p>
                 <h4 className='pokeName '>{pokeName}</h4>
             </div>
             <Sprites />

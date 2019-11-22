@@ -11,7 +11,10 @@ import {
   HAVE_EVOLUTION,
   REVERT,
   STORE_EVOLUTIONS,
-  STORE_2ND_EVO
+  STORE_2ND_EVO,
+  CLEAR,
+  EVO_SPRITE_2,
+  EVO_SPRITE
 } from "../types";
 
 export default (state, action) => {
@@ -66,15 +69,20 @@ export default (state, action) => {
         ...state,
         haveEvolution: true
       };
-      case STORE_EVOLUTIONS:
-        return {
+    case STORE_EVOLUTIONS:
+      return {
+        ...state,
+        evo1: action.payload
+      };
+    case STORE_2ND_EVO:
+      return {
+        ...state,
+        evo2: action.payload
+      };
+      case EVO_SPRITE:
+        return{
           ...state,
-          evo1: action.payload
-        }
-      case STORE_2ND_EVO:
-        return {
-          ...state,
-          evo2: action.payload
+          evoSprite: action.payload
         }
     case SEARCH_FAIL:
       return {
@@ -90,13 +98,34 @@ export default (state, action) => {
         loading: false,
         isShiny: false,
         haveEvolution: null,
-        searchError: "The Pokemon you searched for cannot be found. Please check your spelling"
+        searchError:
+          "The Pokemon you searched for cannot be found. Please check your spelling",
+        evo1: "",
+        evo2: ""
       };
-      case REVERT:
-        return{
-          ...state,
-          searchError: null
-        }
+
+    case CLEAR:
+      return {
+        ...state,
+        pokemon: "",
+        sprite: "",
+        pokeName: "",
+        pokeType: [],
+        api: "",
+        evolutions: "",
+        evolveChain: [],
+        loading: false,
+        isShiny: false,
+        haveEvolution: null,
+        searchError: null,
+        evo1: "",
+        evo2: ""
+      };
+    case REVERT:
+      return {
+        ...state,
+        searchError: null
+      };
     default:
       return state;
   }
