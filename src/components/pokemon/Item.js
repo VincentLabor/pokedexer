@@ -18,12 +18,12 @@ const Item = () => {
 
     return (
         <Fragment>
-            <div className="pokeContainer centers">
+            <div className="pad2 centers">
                 <p className='pokeNum centerText'>{pokedexNum === undefined ? "" : "#" + pokedexNum}</p>
                 <h4 className='pokeName '>{pokeName}</h4>
             </div>
             <Sprites />
-            <div className='pokeContainer centers'>
+            <div className='pad2 centers'>
                 <PokeTypes />
             </div>
             <p className='centerText'>{dexEntry}</p>

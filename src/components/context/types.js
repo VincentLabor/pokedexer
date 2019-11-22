@@ -17,6 +17,8 @@ export const STORE_2ND_EVO = 'STORE_2ND_EVO';
 export const CLEAR = 'CLEAR'; 
 export const EVO_SPRITE_2 = 'EVO_SPRITE_2'; 
 export const EVO_SPRITE = 'EVO_SPRITE'; 
+export const PRE_EVO = 'PRE_EVO'; 
+export const PRE_EVO_NAME = 'PRE_EVO_NAME'; 
 
 
 

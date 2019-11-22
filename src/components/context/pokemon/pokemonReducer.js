@@ -13,8 +13,10 @@ import {
   STORE_EVOLUTIONS,
   STORE_2ND_EVO,
   CLEAR,
-  EVO_SPRITE_2,
-  EVO_SPRITE
+  PRE_EVO,
+  PRE_EVO_NAME,
+  EVO_SPRITE,
+  EVO_SPRITE_2
 } from "../types";
 
 export default (state, action) => {
@@ -79,16 +81,26 @@ export default (state, action) => {
         ...state,
         evo2: action.payload
       };
-      case EVO_SPRITE:
-        return{
-          ...state,
-          evoSprite: action.payload
-        }
-      case EVO_SPRITE_2:
-        return{
-          ...state,
-          evoSprite2: action.payload
-        }
+    case EVO_SPRITE:
+      return {
+        ...state,
+        evoSprite: action.payload
+      };
+    case EVO_SPRITE_2:
+      return {
+        ...state,
+        evoSprite2: action.payload
+      };
+    case PRE_EVO_NAME:
+      return {
+        ...state,
+        preEvoName: action.payload
+      }
+    case PRE_EVO:
+      return {
+        ...state,
+        preEvoSprite: action.payload
+      }
     case SEARCH_FAIL:
       return {
         ...state,
@@ -106,7 +118,9 @@ export default (state, action) => {
         searchError:
           "The Pokemon you searched for cannot be found. Please check your spelling",
         evo1: "",
-        evo2: ""
+        evo2: "",
+        evoSprite: "",
+        evoSprite2: ""
       };
 
     case CLEAR:
@@ -124,7 +138,9 @@ export default (state, action) => {
         haveEvolution: null,
         searchError: null,
         evo1: "",
-        evo2: ""
+        evo2: "",
+        evoSprite: "",
+        evoSprite2: ""
       };
     case REVERT:
       return {

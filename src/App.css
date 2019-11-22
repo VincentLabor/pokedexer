@@ -84,8 +84,13 @@ li {
   background: lightpink;
 }
 
-.pokeContainer {
+.pad2 {
   padding: 2em;
+}
+
+.sidepad2{
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .pokeName {

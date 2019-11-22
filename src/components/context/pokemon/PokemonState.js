@@ -17,8 +17,10 @@ import {
   STORE_EVOLUTIONS,
   STORE_2ND_EVO,
   CLEAR,
+  PRE_EVO,
+  EVO_SPRITE,
   EVO_SPRITE_2,
-  EVO_SPRITE
+  PRE_EVO_NAME
 } from "../types";
 
 const PokemonState = props => {
@@ -35,10 +37,12 @@ const PokemonState = props => {
     isShiny: false,
     haveEvolution: null,
     searchError: null,
+    preEvoName: "",
     evo1: "",
     evo2: "",
     evoSprite: "",
-    evoSprite2: ""
+    evoSprite2: "",
+    preEvoSprite: ""
   };
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
@@ -104,19 +108,32 @@ const PokemonState = props => {
       payload: res2.data.chain.evolves_to
     });
 
+      //This is the first evolution. We do it this way because in the chance that a person selects a 2nd evolution, the first evolution will be present.
     dispatch({
+      type: PRE_EVO_NAME,
+      payload: res2.data.chain.species.name
+    });
+
+    const thirdResponse=await axios.get(`https://pokeapi.co/api/v2/pokemon/${res2.data.chain.species.name}`);
+
+    dispatch({
+      type: PRE_EVO,
+      payload: thirdResponse.data.sprites.front_default
+    })
+
       //2nd Evolution
+    dispatch({
       type: STORE_EVOLUTIONS,
       payload: res2.data.chain.evolves_to[0].species.name
     });
 
-    const thirdResponse = await axios.get(
+    const fourthResponse = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`
     );
 
     dispatch({
       type: EVO_SPRITE,
-      payload: thirdResponse.data.sprites.front_default
+      payload: fourthResponse.data.sprites.front_default
     });
 
     dispatch({
@@ -125,18 +142,14 @@ const PokemonState = props => {
       payload: res2.data.chain.evolves_to[0].evolves_to[0].species.name
     });
 
-    const fourthResponse = await axios.get(
+    const fifthResponse = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].evolves_to[0].species.name}`
     );
 
-      console.log(fourthResponse);
-
-       dispatch({
-         type: EVO_SPRITE_2,
-         payload: fourthResponse.data.sprites.front_default
-       })
-
-
+    dispatch({
+      type: EVO_SPRITE_2,
+      payload: fifthResponse.data.sprites.front_default
+    });
   };
 
   const checkEvolution = () => {
@@ -193,6 +206,8 @@ const PokemonState = props => {
         evolveChain: state.evolveChain,
         haveEvolution: state.haveEvolution,
         searchError: state.searchError,
+        preEvoName: state.preEvoName,
+        preEvoSprite: state.preEvoSprite,
         evo1: state.evo1,
         evo2: state.evo2,
         api: state.api,

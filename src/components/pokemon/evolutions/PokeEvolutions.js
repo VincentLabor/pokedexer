@@ -4,17 +4,30 @@ import PokemonContext from "../../context/pokemon/pokemonContext";
 const PokeEvolutions = () => {
   const pokemonContext = useContext(PokemonContext);
 
-  const { haveEvolution, evo1, evo2, evoSprite, evoSprite2 } = pokemonContext;
+  const {
+    haveEvolution,
+    evo1,
+    evo2,
+    preEvoName,
+    evoSprite,
+    evoSprite2,
+    preEvoSprite
+  } = pokemonContext;
 
   return (
     <Fragment>
-      {evo1 && <h3>Evolutions</h3>}
-      <div className="evolved">
-        <div className="evo1">
+      <div className="centers pad2">{evo1 && <h3>Evolutions</h3>}</div>
+
+      <div className="evolved centers">
+        <div className="preEvo sidepad2">
+          <img src={preEvoSprite} alt="" />
+          <p className="evolutions">{preEvoName}</p>
+        </div>
+        <div className="evo1 sidepad2">
           <img src={evoSprite} alt="" />
           <p className="evolutions">{evo1}</p>
         </div>
-        <div className="evo2">
+        <div className="evo2 sidepad2">
           <img src={evoSprite2} alt="" />
           <p className="evolutions">{evo2}</p>
         </div>
