@@ -101,8 +101,6 @@ const PokemonState = props => {
       payload: res.data.evolution_chain.url
     });
 
-    console.log(res.data)
-
     if (res.data.evolves_from_species !== null) {
       checkEvolution();
     }
@@ -130,45 +128,49 @@ const PokemonState = props => {
       payload: thirdResponse.data.sprites.front_default
     });
 
+    console.log(res2.data.chain.evolves_to.length)
+
     //2nd Evolution
-    dispatch({
-      type: STORE_EVOLUTIONS,
-      payload:
-        res2.data.chain.evolves_to[0].species.name.charAt(0).toUpperCase() +
-        res2.data.chain.evolves_to[0].species.name.slice(1)
-    });
+    if(res2.data.chain.evolves_to.length !== 0){
+      dispatch({
+        type: STORE_EVOLUTIONS,
+        payload:
+          res2.data.chain.evolves_to[0].species.name.charAt(0).toUpperCase() +
+          res2.data.chain.evolves_to[0].species.name.slice(1)
+      });
 
-    const fourthResponse = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`
-    );
-
-    dispatch({
-      type: EVO_SPRITE,
-      payload: fourthResponse.data.sprites.front_default
-    });
-
-    try {
-      const fifthResponse = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].evolves_to[0].species.name}`
+      const fourthResponse = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`
       );
 
       dispatch({
-        //3rd evolution
-        type: STORE_2ND_EVO,
-        payload:
-          res2.data.chain.evolves_to[0].evolves_to[0].species.name
-            .charAt(0)
-            .toUpperCase() +
-          res2.data.chain.evolves_to[0].evolves_to[0].species.name.slice(1)
+        type: EVO_SPRITE,
+        payload: fourthResponse.data.sprites.front_default
       });
-
-      dispatch({
-        type: EVO_SPRITE_2,
-        payload: fifthResponse.data.sprites.front_default
-      });
-    } catch (error) {
-      console.log(error);
     }
+
+     try {
+       const fifthResponse = await axios.get(
+         `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].evolves_to[0].species.name}`
+       );
+
+       dispatch({
+         //3rd evolution
+         type: STORE_2ND_EVO,
+         payload:
+           res2.data.chain.evolves_to[0].evolves_to[0].species.name
+             .charAt(0)
+             .toUpperCase() +
+           res2.data.chain.evolves_to[0].evolves_to[0].species.name.slice(1)
+       });
+
+       dispatch({
+         type: EVO_SPRITE_2,
+         payload: fifthResponse.data.sprites.front_default
+       });
+     } catch (error) {
+       console.log(error);
+     }
   };
 
   const checkEvolution = () => {
