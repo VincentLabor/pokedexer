@@ -25,6 +25,10 @@ body {
   padding: 1em;
 }
 
+.mr-Sides-1{
+margin: 0 1em;
+}
+
 .centers {
   display: flex;
   justify-content: center;
@@ -88,7 +92,7 @@ li {
   padding: 2em;
 }
 
-.sidepad2{
+.sidepad2 {
   padding-left: 2em;
   padding-right: 2em;
 }
@@ -107,12 +111,12 @@ li {
 }
 
 .space-between {
-  margin: 0 0.5em;
+  margin: 0;
 }
 
 .pokeType {
   border: 1px solid black;
-  padding: 0.5em;
+  padding: 1em;
   border-radius: 5px;
 }
 
@@ -151,6 +155,98 @@ li {
   However, delay the fade out process for 2.5 seconds */
   -webkit-animation: fadein 0.5s, fadeout 0.5s 6s;
   animation: fadein 0.5s, fadeout 0.5s 6s;
+}
+
+/* These are to fit with the pokemon types and give them a color reminiscent of pokemon */
+
+.normal {
+  background: #a8a877;
+  border-radius: 5px;
+}
+
+.fire {
+  background: #f0802f;
+  border-radius: 5px;
+}
+
+.water {
+  background: #6790f0;
+  border-radius: 5px;
+}
+
+.electric {
+  background: #f8d02f;
+  border-radius: 5px;
+}
+
+.grass {
+  background: #78c84f;
+  border-radius: 5px;
+}
+
+.ghost {
+  background: #705897;
+  border-radius: 5px;
+}
+
+.ice {
+  border-radius: 5px;
+  background: #98d8d8;
+}
+
+.fighting {
+  background: #c03028;
+  border-radius: 5px;
+}
+
+.poison {
+  background: #9f409f;
+  border-radius: 5px;
+}
+
+.ground {
+  background: #e0c067;
+  border-radius: 5px;
+}
+
+.bug {
+  background: #a8b820;
+  border-radius: 5px;
+}
+
+.flying {
+  background: #A890F0;
+  border-radius: 5px;
+}
+
+.psychic {
+  background: #f85887;
+  border-radius: 5px;
+}
+
+.rock {
+  background: #b8a037;
+  border-radius: 5px;
+}
+
+.dragon {
+  background: #7038f8;
+  border-radius: 5px;
+}
+
+.dark {
+  background: #6f5847;
+  border-radius: 5px;
+}
+
+.steel{
+  background: #B8B8D0;
+  border-radius: 5px;
+}
+
+.fairy{
+  background: #EE98AC;
+  border-radius: 5px;
 }
 
 /* Animations to fade the snackbar in and out */

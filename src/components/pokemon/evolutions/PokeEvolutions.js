@@ -27,10 +27,13 @@ const PokeEvolutions = () => {
           <img src={evoSprite} alt="" />
           <p className="evolutions">{evo1}</p>
         </div>
-        <div className="evo2 sidepad2">
-          <img src={evoSprite2} alt="" />
-          <p className="evolutions">{evo2}</p>
-        </div>
+        {evo2 && (
+          <div className="evo2 sidepad2">
+            {/* This will hide the 3rd div from appearing if the pokemon doe snot have 3 evolutions */}
+            <img src={evoSprite2} alt="" />
+            <p className="evolutions">{evo2}</p>
+          </div>
+        )}
       </div>
     </Fragment>
   );

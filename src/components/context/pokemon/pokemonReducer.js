@@ -120,7 +120,9 @@ export default (state, action) => {
         evo1: "",
         evo2: "",
         evoSprite: "",
-        evoSprite2: ""
+        evoSprite2: "",
+        preEvoSprite: "",
+        preEvoName: "",
       };
 
     case CLEAR:
@@ -140,7 +142,9 @@ export default (state, action) => {
         evo1: "",
         evo2: "",
         evoSprite: "",
-        evoSprite2: ""
+        evoSprite2: "",
+        preEvoSprite: "",
+        preEvoName: "",
       };
     case REVERT:
       return {

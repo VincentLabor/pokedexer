@@ -2,7 +2,7 @@ import React from "react";
 
 const TypeItem = ({ eleType: { type } }) => {
   return (
-    <div>
+    <div className={`mr-Sides-1 ${type.name}`}>
       <p className='space-between pokeType'>
         <strong>
           {type.name.charAt(0).toUpperCase() + type.name.slice(1)}

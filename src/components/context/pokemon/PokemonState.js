@@ -108,23 +108,25 @@ const PokemonState = props => {
       payload: res2.data.chain.evolves_to
     });
 
-      //This is the first evolution. We do it this way because in the chance that a person selects a 2nd evolution, the first evolution will be present.
+    //This is the first evolution. We do it this way because in the chance that a person selects a 2nd evolution, the first evolution will be present.
     dispatch({
       type: PRE_EVO_NAME,
-      payload: res2.data.chain.species.name
+      payload: res2.data.chain.species.name.charAt(0).toUpperCase() + res2.data.chain.species.name.slice(1)
     });
 
-    const thirdResponse=await axios.get(`https://pokeapi.co/api/v2/pokemon/${res2.data.chain.species.name}`);
+    const thirdResponse = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.species.name}`
+    );
 
     dispatch({
       type: PRE_EVO,
       payload: thirdResponse.data.sprites.front_default
-    })
+    });
 
-      //2nd Evolution
+    //2nd Evolution
     dispatch({
       type: STORE_EVOLUTIONS,
-      payload: res2.data.chain.evolves_to[0].species.name
+      payload: res2.data.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + res2.data.chain.evolves_to[0].species.name.slice(1)
     });
 
     const fourthResponse = await axios.get(
@@ -136,20 +138,24 @@ const PokemonState = props => {
       payload: fourthResponse.data.sprites.front_default
     });
 
-    dispatch({
-      //3rd evolution
-      type: STORE_2ND_EVO,
-      payload: res2.data.chain.evolves_to[0].evolves_to[0].species.name
-    });
+    try {
+      const fifthResponse = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].evolves_to[0].species.name}`
+      );
 
-    const fifthResponse = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].evolves_to[0].species.name}`
-    );
+      dispatch({
+        //3rd evolution
+        type: STORE_2ND_EVO,
+        payload: res2.data.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() +  res2.data.chain.evolves_to[0].evolves_to[0].species.name.slice(1)
+      });
 
-    dispatch({
-      type: EVO_SPRITE_2,
-      payload: fifthResponse.data.sprites.front_default
-    });
+      dispatch({
+        type: EVO_SPRITE_2,
+        payload: fifthResponse.data.sprites.front_default
+      });
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const checkEvolution = () => {
