@@ -95,12 +95,12 @@ export default (state, action) => {
       return {
         ...state,
         preEvoName: action.payload
-      }
+      };
     case PRE_EVO:
       return {
         ...state,
         preEvoSprite: action.payload
-      }
+      };
     case SEARCH_FAIL:
       return {
         ...state,
@@ -122,7 +122,7 @@ export default (state, action) => {
         evoSprite: "",
         evoSprite2: "",
         preEvoSprite: "",
-        preEvoName: "",
+        preEvoName: ""
       };
 
     case CLEAR:
@@ -131,6 +131,7 @@ export default (state, action) => {
         pokemon: "",
         sprite: "",
         pokeName: "",
+        dexEntry: "",
         pokeType: [],
         api: "",
         evolutions: "",
@@ -144,7 +145,7 @@ export default (state, action) => {
         evoSprite: "",
         evoSprite2: "",
         preEvoSprite: "",
-        preEvoName: "",
+        preEvoName: ""
       };
     case REVERT:
       return {

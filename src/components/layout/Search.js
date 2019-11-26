@@ -15,13 +15,19 @@ const Search = () => {
     getPokeName,
     getPokeType,
     getEvolutions,
-    error
+    error,
+    clearAll
   } = pokemonContext;
   // const {setAlert} = alertContext;
 
   const onChange = e => {
     setPkmn(e.target.value);
   };
+
+  const onClick = ()=>{
+    setPkmn("");
+    clearAll();
+  }
 
   const onSubmit = e => {
     e.preventDefault(); //Prevents a new page from opening.
@@ -46,6 +52,7 @@ const Search = () => {
   };
 
   return (
+    <div>
     <form onSubmit={onSubmit} className="pkSearch">
       <input
         type="text"
@@ -58,6 +65,8 @@ const Search = () => {
       />
       <input type="submit" value="Go" className="goSubmit" />
     </form>
+    <button className='removeContent' onClick={onClick}>Clear</button>
+    </div>
   );
 };
 

@@ -9,6 +9,7 @@ html{
   height: 100%;
 }
 
+
 body {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
@@ -22,10 +23,9 @@ body {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  background: red;
+  background: #ED254E;
   color: black;
   align-items: center; /*This makes sure the items on the navbar are completely aligned*/
-  border-bottom: 1px solid red;
 }
 
 .pd-1 {
@@ -90,12 +90,25 @@ li {
 .goSubmit {
   border-radius: 10px;
   border: 1px solid #ccc;
-  background: lightcoral;
+  background: #C21F40;
   padding: 0.3em;
 }
 
 .goSubmit:hover {
-  background: lightpink;
+  background: #ED254E;
+}
+
+.removeContent{
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #F4FFFD;
+  padding: 0.3em;
+  margin-top: .5em;
+}
+
+.removeContent:hover{
+  background: #F5F5F5;
 }
 
 .pad2 {

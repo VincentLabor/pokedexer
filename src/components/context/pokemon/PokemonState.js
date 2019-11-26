@@ -49,11 +49,10 @@ const PokemonState = props => {
 
   const searchPokemon = async pkmn => {
     setLoading();
+    clearAll();
 
     try {
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
-
-      clearAll();
 
       dispatch({
         type: GET_POKEMON,
@@ -128,7 +127,7 @@ const PokemonState = props => {
       payload: thirdResponse.data.sprites.front_default
     });
 
-    console.log(res2.data.chain.evolves_to.length)
+    console.log(res2.data)
 
     //2nd Evolution
     if(res2.data.chain.evolves_to.length !== 0){
@@ -244,7 +243,8 @@ const PokemonState = props => {
         getPokeName,
         getPokeType,
         getEvolutions,
-        checkEvolution
+        checkEvolution,
+        clearAll
       }}
     >
       {props.children}
