@@ -16,7 +16,8 @@ const Search = () => {
     getPokeType,
     getEvolutions,
     error,
-    clearAll
+    clearAll,
+    pokemon
   } = pokemonContext;
   // const {setAlert} = alertContext;
 
@@ -24,17 +25,17 @@ const Search = () => {
     setPkmn(e.target.value);
   };
 
-  const onClick = ()=>{
+  const onClick = () => {
     setPkmn("");
     clearAll();
-  }
+  };
 
   const onSubmit = e => {
     e.preventDefault(); //Prevents a new page from opening.
     try {
       searchPokemon(pkmn.toLowerCase());
       getSprite(pkmn.toLowerCase());
-      getDexEntry(pkmn.toLowerCase()); 
+      getDexEntry(pkmn.toLowerCase());
       getPokeName(pkmn.toLowerCase());
       getPokeType(pkmn.toLowerCase());
       getEvolutions(pkmn.toLowerCase());
@@ -53,19 +54,23 @@ const Search = () => {
 
   return (
     <div>
-    <form onSubmit={onSubmit} className="pkSearch">
-      <input
-        type="text"
-        name="pkmn"
-        value={pkmn}
-        onChange={onChange}
-        placeholder="E.g. Lugia, Rhyhorn, Swampert, etc..."
-        className="search"
-        required
-      />
-      <input type="submit" value="Go" className="goSubmit" />
-    </form>
-    <button className='removeContent' onClick={onClick}>Clear</button>
+      <form onSubmit={onSubmit} className="pkSearch">
+        <input
+          type="text"
+          name="pkmn"
+          value={pkmn}
+          onChange={onChange}
+          placeholder="E.g. Lugia, Rhyhorn, Swampert, etc..."
+          className="search"
+          required
+        />
+        <input type="submit" value="Go" className="goSubmit" />
+      </form>
+      {pokemon !== "" ? (
+        <button className="removeContent" onClick={onClick}>
+          Clear
+        </button>
+      ) : null}
     </div>
   );
 };
