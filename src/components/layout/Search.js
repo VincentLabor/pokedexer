@@ -31,7 +31,7 @@ const Search = () => {
       getDexEntry(pkmn.toLowerCase()); 
       getPokeName(pkmn.toLowerCase());
       getPokeType(pkmn.toLowerCase());
-      getEvolutions(pkmn);
+      getEvolutions(pkmn.toLowerCase());
       setPkmn("");
     } catch (error) {
       console.log(error);

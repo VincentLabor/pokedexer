@@ -69,6 +69,7 @@ const PokemonState = props => {
     }
   };
 
+  //Get the name of the pokemon
   const getPokeName = async pkmn => {
     setLoading();
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
@@ -78,6 +79,7 @@ const PokemonState = props => {
     });
   };
 
+  //Get the sprite of the pokemon
   const getSprite = async pkmn => {
     setLoading();
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
@@ -88,6 +90,7 @@ const PokemonState = props => {
     });
   };
 
+  //Get the evolutions
   const getEvolutions = async pkmn => {
     setLoading();
     const res = await axios.get(
@@ -97,6 +100,8 @@ const PokemonState = props => {
       type: GET_EVOLUTIONS,
       payload: res.data.evolution_chain.url
     });
+
+    console.log(res.data)
 
     if (res.data.evolves_from_species !== null) {
       checkEvolution();
@@ -111,7 +116,9 @@ const PokemonState = props => {
     //This is the first evolution. We do it this way because in the chance that a person selects a 2nd evolution, the first evolution will be present.
     dispatch({
       type: PRE_EVO_NAME,
-      payload: res2.data.chain.species.name.charAt(0).toUpperCase() + res2.data.chain.species.name.slice(1)
+      payload:
+        res2.data.chain.species.name.charAt(0).toUpperCase() +
+        res2.data.chain.species.name.slice(1)
     });
 
     const thirdResponse = await axios.get(
@@ -126,7 +133,9 @@ const PokemonState = props => {
     //2nd Evolution
     dispatch({
       type: STORE_EVOLUTIONS,
-      payload: res2.data.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + res2.data.chain.evolves_to[0].species.name.slice(1)
+      payload:
+        res2.data.chain.evolves_to[0].species.name.charAt(0).toUpperCase() +
+        res2.data.chain.evolves_to[0].species.name.slice(1)
     });
 
     const fourthResponse = await axios.get(
@@ -146,7 +155,11 @@ const PokemonState = props => {
       dispatch({
         //3rd evolution
         type: STORE_2ND_EVO,
-        payload: res2.data.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() +  res2.data.chain.evolves_to[0].evolves_to[0].species.name.slice(1)
+        payload:
+          res2.data.chain.evolves_to[0].evolves_to[0].species.name
+            .charAt(0)
+            .toUpperCase() +
+          res2.data.chain.evolves_to[0].evolves_to[0].species.name.slice(1)
       });
 
       dispatch({
@@ -154,7 +167,7 @@ const PokemonState = props => {
         payload: fifthResponse.data.sprites.front_default
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -162,6 +175,7 @@ const PokemonState = props => {
     dispatch({ type: HAVE_EVOLUTION });
   };
 
+  //Get the pokedex text entry
   const getDexEntry = async pkmn => {
     setLoading();
     const res = await axios.get(
@@ -178,6 +192,7 @@ const PokemonState = props => {
     }
   };
 
+  //Get the pokemon's typings
   const getPokeType = async pkmn => {
     setLoading();
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
@@ -188,12 +203,14 @@ const PokemonState = props => {
     });
   };
 
+  //The loading
   const setLoading = () => {
     dispatch({
       type: SET_LOADING
     });
   };
 
+  //The clear/Reset
   const clearAll = () => {
     dispatch({
       type: CLEAR
