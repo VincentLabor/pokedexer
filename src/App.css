@@ -4,11 +4,18 @@
   margin: 0;
 }
 
+
+html{
+  height: 100%;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: black;
+  background: #333;
+  height: 100%;
 }
 
 .nav {
@@ -61,6 +68,9 @@ li {
   width: 60%;
   margin: auto;
   padding: 0 2em;
+  background: whitesmoke;
+  height: 100%;
+
 }
 
 .pkSearch {
@@ -125,6 +135,11 @@ li {
 }
 
 .evolutions {
+  display: flex;
+  justify-content: center;
+}
+
+.evolutionArrows{
   display: flex;
   justify-content: center;
 }

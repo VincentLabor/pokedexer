@@ -15,10 +15,7 @@ function App() {
           <Router>
             <Navbar />
             <div className="container">
-              <div className="alerts">
-              
-              </div>
-              
+              <div className="alerts"></div>
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/about" component={About} />
