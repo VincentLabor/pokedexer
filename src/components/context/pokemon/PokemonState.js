@@ -91,7 +91,9 @@ const PokemonState = props => {
 
   //Get the evolutions
   const getEvolutions = async pkmn => {
+
     setLoading();
+
     const res = await axios.get(
       `https://pokeapi.co/api/v2/pokemon-species/${pkmn}/`
     );
