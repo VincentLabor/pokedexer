@@ -20,7 +20,9 @@ import {
   PRE_EVO,
   EVO_SPRITE,
   EVO_SPRITE_2,
-  PRE_EVO_NAME
+  PRE_EVO_NAME,
+  PREVIOUS_POKE,
+  NEXT_POKE
 } from "../types";
 
 const PokemonState = props => {
@@ -44,7 +46,10 @@ const PokemonState = props => {
     evoSprite2: "",
     preEvoSprite: "",
     nextPokemon: "",
-    prevPokemon: ""
+    prevPokemon: "",
+    nextPokeId: "",
+    prevPokeId: "",
+    previousSprite:""
   };
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
@@ -60,6 +65,14 @@ const PokemonState = props => {
         type: GET_POKEMON,
         payload: res.data
       });
+
+      dispatch({ //This is to catch the previous pokemon's id
+        type: PREVIOUS_POKE,
+        payload: res.data.id - 1
+      })
+ 
+
+
     } catch (err) {
       console.log(err);
       dispatch({
@@ -93,7 +106,6 @@ const PokemonState = props => {
 
   //Get the evolutions
   const getEvolutions = async pkmn => {
-
     setLoading();
 
     const res = await axios.get(
@@ -131,10 +143,8 @@ const PokemonState = props => {
       payload: thirdResponse.data.sprites.front_default
     });
 
-    console.log(res2.data)
-
     //2nd Evolution
-    if(res2.data.chain.evolves_to.length !== 0){
+    if (res2.data.chain.evolves_to.length !== 0) {
       dispatch({
         type: STORE_EVOLUTIONS,
         payload:
@@ -142,9 +152,6 @@ const PokemonState = props => {
           res2.data.chain.evolves_to[0].species.name.slice(1)
       });
 
-      console.log( res2.data.chain.evolves_to[0].species.name.charAt(0).toUpperCase() +
-      res2.data.chain.evolves_to[0].species.name.slice(1))
-      
       const fourthResponse = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`
       );
@@ -155,28 +162,28 @@ const PokemonState = props => {
       });
     }
 
-     try {
-       const fifthResponse = await axios.get(
-         `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].evolves_to[0].species.name}`
-       );
+    try {
+      const fifthResponse = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].evolves_to[0].species.name}`
+      );
 
-       dispatch({
-         //3rd evolution
-         type: STORE_2ND_EVO,
-         payload:
-           res2.data.chain.evolves_to[0].evolves_to[0].species.name
-             .charAt(0)
-             .toUpperCase() +
-           res2.data.chain.evolves_to[0].evolves_to[0].species.name.slice(1)
-       });
+      dispatch({
+        //3rd evolution
+        type: STORE_2ND_EVO,
+        payload:
+          res2.data.chain.evolves_to[0].evolves_to[0].species.name
+            .charAt(0)
+            .toUpperCase() +
+          res2.data.chain.evolves_to[0].evolves_to[0].species.name.slice(1)
+      });
 
-       dispatch({
-         type: EVO_SPRITE_2,
-         payload: fifthResponse.data.sprites.front_default
-       });
-     } catch (error) {
-       console.log(error);
-     }
+      dispatch({
+        type: EVO_SPRITE_2,
+        payload: fifthResponse.data.sprites.front_default
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const checkEvolution = () => {
@@ -210,6 +217,12 @@ const PokemonState = props => {
       payload: res.data.types //This displays numbered stuff which is okay.
     });
   };
+
+  // const pokeList = async () => { //This determines what's the previous/next pokemon 
+
+  
+
+  // }
 
   //The loading
   const setLoading = () => {
@@ -246,6 +259,9 @@ const PokemonState = props => {
         evoSprite2: state.evoSprite2,
         nextPokemon: state.nextPokemon,
         prevPokemon: state.prevPokemon,
+        nextPokeId: state.nextPokeId,
+        prevPokeId: state.prevPokeId,
+        previousSprite: state.previousSprite,
         searchPokemon,
         getSprite,
         getDexEntry,
@@ -253,8 +269,7 @@ const PokemonState = props => {
         getPokeType,
         getEvolutions,
         checkEvolution,
-        clearAll,
-
+        clearAll
       }}
     >
       {props.children}

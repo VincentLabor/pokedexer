@@ -18,7 +18,7 @@ const PokeEvolutions = () => {
     getPokeName,
     getPokeType,
     getEvolutions,
-    setPkmn,
+    
     error,
     clearAll,
     pokeName
@@ -35,7 +35,7 @@ const PokeEvolutions = () => {
       getPokeName(preEvoName.toLowerCase());
       getPokeType(preEvoName.toLowerCase());
       getEvolutions(preEvoName.toLowerCase());
-      setPkmn("");
+      
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +50,7 @@ const PokeEvolutions = () => {
       getPokeName(evo1.toLowerCase());
       getPokeType(evo1.toLowerCase());
       getEvolutions(evo1.toLowerCase());
-      setPkmn("");
+      
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +65,7 @@ const PokeEvolutions = () => {
       getPokeName(evo2.toLowerCase());
       getPokeType(evo2.toLowerCase());
       getEvolutions(evo2.toLowerCase());
-      setPkmn("");
+      
     } catch (error) {
       console.log(error);
     }
@@ -103,7 +103,7 @@ const PokeEvolutions = () => {
         {/* Arrow Image */}
         {evo2 && (
           <div className="evolutionArrows">
-            <i class="fas fa-long-arrow-alt-right"></i>
+            <i className="fas fa-long-arrow-alt-right"></i>
           </div>
         )}
 

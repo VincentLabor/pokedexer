@@ -19,6 +19,8 @@ export const EVO_SPRITE_2 = 'EVO_SPRITE_2';
 export const EVO_SPRITE = 'EVO_SPRITE'; 
 export const PRE_EVO = 'PRE_EVO'; 
 export const PRE_EVO_NAME = 'PRE_EVO_NAME'; 
+export const PREVIOUS_POKE = 'PREVIOUS_POKE'; 
+export const NEXT_POKE = 'NEXT_POKE'; 
 
 
 

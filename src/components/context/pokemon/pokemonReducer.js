@@ -16,7 +16,9 @@ import {
   PRE_EVO,
   PRE_EVO_NAME,
   EVO_SPRITE,
-  EVO_SPRITE_2
+  EVO_SPRITE_2,
+  PREVIOUS_POKE,
+  NEXT_POKE
 } from "../types";
 
 export default (state, action) => {
@@ -27,6 +29,12 @@ export default (state, action) => {
         pokemon: action.payload,
         loading: false
       };
+      case PREVIOUS_POKE: 
+      return{
+        ...state,
+        prevPokeId: action.payload,
+        previousSprite: action.payload.sprites
+      }
     case GET_POKEMON_NAME:
       return {
         ...state,
