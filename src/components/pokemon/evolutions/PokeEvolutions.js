@@ -73,16 +73,17 @@ const PokeEvolutions = () => {
 
   return (
     <Fragment>
-      <div className="centers pad2">{evo1 && <h3>Evolutions</h3>}</div>
+<div className="centers pad2">{evo1 && <h3>Evolutions</h3>}{pokeName !== "" && evo1 === "" ? (<h3>There are no evolutions</h3>) : null}</div>
       
       {/* Container for evolutions*/}
       <div className="evolved centers">
 
         {/* Base form */}
-        <div className="preEvo sidepad2" onClick={baseEvo}>
+        {evo1 && (<div className="preEvo sidepad2" onClick={baseEvo}>
           <img src={preEvoSprite} alt="" />
           <p className="evolutions">{preEvoName}</p>
-        </div>
+        </div>)}
+        
 
         {/* Arrow Image*/}
         {evo1 && (

@@ -42,7 +42,9 @@ const PokemonState = props => {
     evo2: "",
     evoSprite: "",
     evoSprite2: "",
-    preEvoSprite: ""
+    preEvoSprite: "",
+    nextPokemon: "",
+    prevPokemon: ""
   };
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
@@ -140,6 +142,9 @@ const PokemonState = props => {
           res2.data.chain.evolves_to[0].species.name.slice(1)
       });
 
+      console.log( res2.data.chain.evolves_to[0].species.name.charAt(0).toUpperCase() +
+      res2.data.chain.evolves_to[0].species.name.slice(1))
+      
       const fourthResponse = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${res2.data.chain.evolves_to[0].species.name}`
       );
@@ -239,6 +244,8 @@ const PokemonState = props => {
         api: state.api,
         evoSprite: state.evoSprite,
         evoSprite2: state.evoSprite2,
+        nextPokemon: state.nextPokemon,
+        prevPokemon: state.prevPokemon,
         searchPokemon,
         getSprite,
         getDexEntry,
@@ -246,7 +253,8 @@ const PokemonState = props => {
         getPokeType,
         getEvolutions,
         checkEvolution,
-        clearAll
+        clearAll,
+
       }}
     >
       {props.children}

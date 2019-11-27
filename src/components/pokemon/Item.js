@@ -4,6 +4,7 @@ import Spinner from "../layout/Spinner";
 import PokeTypes from "./Types/PokeTypes";
 import Sprites from "./sprites/Sprites";
 import PokeEvolutions from "./evolutions/PokeEvolutions";
+import NextPokemon from "./nextPokemon/NextPokemon";
 
 const Item = () => {
   const pokemonContext = useContext(PokemonContext);
@@ -31,6 +32,9 @@ const Item = () => {
         <p className="centerText">{dexEntry}</p>
         <div>
           <PokeEvolutions />
+        </div>
+        <div>
+          <NextPokemon />
         </div>
       </div>
     </Fragment>

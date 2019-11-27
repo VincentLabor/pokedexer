@@ -41,6 +41,11 @@ margin: 0 1em;
   justify-content: center;
 }
 
+.spaceBetween{
+  display: flex;
+  justify-content: space-between;
+}
+
 .centerText {
   text-align: center;
 }
