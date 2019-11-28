@@ -18,7 +18,9 @@ import {
   EVO_SPRITE,
   EVO_SPRITE_2,
   PREVIOUS_POKE,
-  NEXT_POKE
+  NEXT_POKE,
+  NEXT_PAGE_SPRITE,
+  PREV_PAGE_SPRITE
 } from "../types";
 
 export default (state, action) => {
@@ -29,12 +31,23 @@ export default (state, action) => {
         pokemon: action.payload,
         loading: false
       };
-      case PREVIOUS_POKE: 
-      return{
+    case PREVIOUS_POKE:
+      return {
         ...state,
-        prevPokeId: action.payload,
-        previousSprite: action.payload.sprites
-      }
+        prevPokeId: action.payload
+      };
+      case PREV_PAGE_SPRITE:
+        return{
+          ...state,
+          previousPageSprite: action.payload.sprites.front_default,
+          prevPokemonName: action.payload.name.charAt(0).toUpperCase() + action.payload.name.slice(1)
+        }
+      case NEXT_PAGE_SPRITE:
+        return{
+          ...state,
+          nextPageSprite: action.payload.sprites.front_default,
+          nextPokemonName: action.payload.name.charAt(0).toUpperCase() + action.payload.name.slice(1)
+        }
     case GET_POKEMON_NAME:
       return {
         ...state,

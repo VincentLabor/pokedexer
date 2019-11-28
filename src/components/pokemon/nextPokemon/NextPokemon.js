@@ -15,7 +15,11 @@ const NextPokemon = () => {
     getPokeType,
     getEvolutions,
     prevPokeId,
-    previousSprite
+    previousSprite,
+    previousPageSprite,
+    prevPokemonName,
+    nextPageSprite,
+    nextPokemonName
   } = pokemonContext;
 
   return (
@@ -23,11 +27,16 @@ const NextPokemon = () => {
       {pokemon === "" || pokemon.id === 1 ? null : (
         <Fragment>
           <div>
-            <p>#{prevPokeId}</p>
-            <img src={previousSprite} alt=""/>
+            <p>
+              #{prevPokeId} {prevPokemonName}
+            </p>
+            <img src={previousPageSprite} alt="" />
           </div>
           <div>
-            <p>#{pokemon.id + 1}</p>
+            <p>
+              #{pokemon.id + 1} {nextPokemonName}
+            </p>
+            <img src={nextPageSprite} alt="" />
             <p></p>
           </div>
         </Fragment>

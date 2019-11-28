@@ -1,4 +1,4 @@
-import React, { useContext, Fragment, useState } from "react";
+import React, { useContext, Fragment } from "react";
 import PokemonContext from "../../context/pokemon/pokemonContext";
 
 const PokeEvolutions = () => {
@@ -18,13 +18,10 @@ const PokeEvolutions = () => {
     getPokeName,
     getPokeType,
     getEvolutions,
-    
     error,
     clearAll,
     pokeName
   } = pokemonContext;
-
-  const [baseForm, setBaseForm] = useState("");
 
   const baseEvo = () => {
     try {
@@ -35,7 +32,6 @@ const PokeEvolutions = () => {
       getPokeName(preEvoName.toLowerCase());
       getPokeType(preEvoName.toLowerCase());
       getEvolutions(preEvoName.toLowerCase());
-      
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +46,6 @@ const PokeEvolutions = () => {
       getPokeName(evo1.toLowerCase());
       getPokeType(evo1.toLowerCase());
       getEvolutions(evo1.toLowerCase());
-      
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +60,6 @@ const PokeEvolutions = () => {
       getPokeName(evo2.toLowerCase());
       getPokeType(evo2.toLowerCase());
       getEvolutions(evo2.toLowerCase());
-      
     } catch (error) {
       console.log(error);
     }
@@ -73,17 +67,22 @@ const PokeEvolutions = () => {
 
   return (
     <Fragment>
-<div className="centers pad2">{evo1 && <h3>Evolutions</h3>}{pokeName !== "" && evo1 === "" ? (<h3>There are no evolutions</h3>) : null}</div>
-      
+      <div className="centers pad2">
+        {evo1 && <h3>Evolutions</h3>}
+        {pokeName !== "" && evo1 === "" ? (
+          <h3>There are no evolutions</h3>
+        ) : null}
+      </div>
+
       {/* Container for evolutions*/}
       <div className="evolved centers">
-
         {/* Base form */}
-        {evo1 && (<div className="preEvo sidepad2" onClick={baseEvo}>
-          <img src={preEvoSprite} alt="" />
-          <p className="evolutions">{preEvoName}</p>
-        </div>)}
-        
+        {evo1 && (
+          <div className="preEvo sidepad2" onClick={baseEvo}>
+            <img src={preEvoSprite} alt="" />
+            <p className="evolutions">{preEvoName}</p>
+          </div>
+        )}
 
         {/* Arrow Image*/}
         {evo1 && (

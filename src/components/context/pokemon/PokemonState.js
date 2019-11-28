@@ -22,7 +22,9 @@ import {
   EVO_SPRITE_2,
   PRE_EVO_NAME,
   PREVIOUS_POKE,
-  NEXT_POKE
+  NEXT_POKE,
+  NEXT_PAGE_SPRITE,
+  PREV_PAGE_SPRITE
 } from "../types";
 
 const PokemonState = props => {
@@ -46,10 +48,12 @@ const PokemonState = props => {
     evoSprite2: "",
     preEvoSprite: "",
     nextPokemon: "",
-    prevPokemon: "",
+    prevPokemonName: "",
+    nextPokemonName: "",
     nextPokeId: "",
     prevPokeId: "",
-    previousSprite:""
+    previousPageSprite: "",
+    nextPageSprite: ""
   };
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
@@ -66,12 +70,30 @@ const PokemonState = props => {
         payload: res.data
       });
 
-      dispatch({ //This is to catch the previous pokemon's id
+      dispatch({
+        //This is to catch the previous pokemon's id
         type: PREVIOUS_POKE,
         payload: res.data.id - 1
-      })
- 
+      });
 
+      //This is for the name and sprite of the previous page pokemon
+      const res2 = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${res.data.id - 1}/`
+      );
+
+      dispatch({
+        type: PREV_PAGE_SPRITE,
+        payload: res2.data
+      });
+
+      const res3 = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${res.data.id + 1}/`
+      );
+
+      dispatch({
+        type: NEXT_PAGE_SPRITE,
+        payload: res3.data
+      }); 
 
     } catch (err) {
       console.log(err);
@@ -218,12 +240,6 @@ const PokemonState = props => {
     });
   };
 
-  // const pokeList = async () => { //This determines what's the previous/next pokemon 
-
-  
-
-  // }
-
   //The loading
   const setLoading = () => {
     dispatch({
@@ -258,10 +274,12 @@ const PokemonState = props => {
         evoSprite: state.evoSprite,
         evoSprite2: state.evoSprite2,
         nextPokemon: state.nextPokemon,
-        prevPokemon: state.prevPokemon,
+        prevPokemonName: state.prevPokemonName,
+        nextPokemonName: state.nextPokemonName,
         nextPokeId: state.nextPokeId,
         prevPokeId: state.prevPokeId,
-        previousSprite: state.previousSprite,
+        previousPageSprite: state.previousPageSprite,
+        nextPageSprite: state.nextPageSprite,
         searchPokemon,
         getSprite,
         getDexEntry,
