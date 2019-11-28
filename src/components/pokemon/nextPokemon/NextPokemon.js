@@ -19,22 +19,41 @@ const NextPokemon = () => {
     previousPageSprite,
     prevPokemonName,
     nextPageSprite,
-    nextPokemonName
+    nextPokemonName,
+    nextPokeId
   } = pokemonContext;
+
+  const previousPage = () => {
+    searchPokemon(prevPokeId);
+    getSprite(prevPokeId);
+    getDexEntry(prevPokeId);
+    getPokeName(prevPokeId);
+    getPokeType(prevPokeId);
+    getEvolutions(prevPokeId);
+  };
+
+  const nextPage = () => {
+    searchPokemon(nextPokeId);
+    getSprite(nextPokeId);
+    getDexEntry(nextPokeId);
+    getPokeName(nextPokeId);
+    getPokeType(nextPokeId);
+    getEvolutions(nextPokeId);
+  };
 
   return (
     <div className="spaceBetween">
       {pokemon === "" || pokemon.id === 1 ? null : (
         <Fragment>
-          <div>
+          <div onClick={previousPage}>
             <p>
               #{prevPokeId} {prevPokemonName}
             </p>
             <img src={previousPageSprite} alt="" />
           </div>
-          <div>
+          <div onClick={nextPage}>
             <p>
-              #{pokemon.id + 1} {nextPokemonName}
+              #{nextPokeId} {nextPokemonName}
             </p>
             <img src={nextPageSprite} alt="" />
             <p></p>

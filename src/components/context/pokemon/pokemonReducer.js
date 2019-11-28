@@ -46,7 +46,8 @@ export default (state, action) => {
         return{
           ...state,
           nextPageSprite: action.payload.sprites.front_default,
-          nextPokemonName: action.payload.name.charAt(0).toUpperCase() + action.payload.name.slice(1)
+          nextPokemonName: action.payload.name.charAt(0).toUpperCase() + action.payload.name.slice(1),
+          nextPokeId: action.payload.id + 1
         }
     case GET_POKEMON_NAME:
       return {
