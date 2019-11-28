@@ -78,7 +78,7 @@ const PokeEvolutions = () => {
       <div className="evolved centers">
         {/* Base form */}
         {evo1 && (
-          <div className="preEvo sidepad2" onClick={baseEvo}>
+          <div className="preEvo sidepad2 cursorPointer" onClick={baseEvo}>
             <img src={preEvoSprite} alt="" />
             <p className="evolutions">{preEvoName}</p>
           </div>
@@ -93,7 +93,7 @@ const PokeEvolutions = () => {
 
         {/* First evolution */}
         {evo1 && (
-          <div className="evo1 sidepad2" onClick={secondEvo}>
+          <div className="evo1 sidepad2 cursorPointer" onClick={secondEvo}>
             <img src={evoSprite} alt="" />
             <p className="evolutions">{evo1}</p>
           </div>
@@ -108,7 +108,7 @@ const PokeEvolutions = () => {
 
         {/* Second evolution */}
         {evo2 && (
-          <div className="evo2 sidepad2" onClick={thirdEvo}>
+          <div className="evo2 sidepad2 cursorPointer" onClick={thirdEvo}>
             {/* This will hide the 3rd div from appearing if the pokemon doe snot have 3 evolutions */}
             <img src={evoSprite2} alt="" />
             <p className="evolutions">{evo2}</p>

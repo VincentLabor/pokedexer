@@ -9,6 +9,9 @@ html{
   height: 100%;
 }
 
+.cursorPointer{
+  cursor: pointer;
+}
 
 body {
   font-family: "Roboto", sans-serif;
@@ -30,6 +33,10 @@ body {
 
 .pd-1 {
   padding: 1em;
+}
+
+.top-mg-2{
+  margin-top: 5em;
 }
 
 .mr-Sides-1{
