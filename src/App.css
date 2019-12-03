@@ -349,6 +349,10 @@ li {
 }
 
 @media (max-width: 640px){
+  .container {
+    width: 80%;
+  }
+  
   .hideOnSmall{
     display: none;
   }
@@ -356,19 +360,17 @@ li {
   .flexDown{
     display: flex;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
+    align-items: center;
+
   }
 
   .centerFlex{
     align-content: center;
-    justify-content: center;
+
   }
 }
 
 @media (min-width: 800px) {
-  .container {
-    width: 85%;
-  }
+
 
 }

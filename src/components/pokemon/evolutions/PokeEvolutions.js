@@ -75,7 +75,7 @@ const PokeEvolutions = () => {
       </div>
 
       {/* Container for evolutions*/}
-      <div className="evolved centers flexDown">
+      <div className="evolved centers flexDown ">
         {/* Base form */}
         {evo1 && (
           <div className="preEvo sidepad2 cursorPointer centerFlex" onClick={baseEvo}>
@@ -86,14 +86,14 @@ const PokeEvolutions = () => {
 
         {/* Arrow Image*/}
         {evo1 && (
-          <div className="evolutionArrows centers hideOnSmall">
+          <div className="evolutionArrows centers hideOnSmall ">
             <i className="fas fa-long-arrow-alt-right centers"></i>
           </div>
         )}
 
         {/* First evolution */}
         {evo1 && (
-          <div className="evo1 sidepad2 cursorPointer" onClick={secondEvo}>
+          <div className="evo1 sidepad2 cursorPointer centerFlex" onClick={secondEvo}>
             <img src={evoSprite} alt="" />
             <p className="evolutions">{evo1}</p>
           </div>
@@ -108,7 +108,7 @@ const PokeEvolutions = () => {
 
         {/* Second evolution */}
         {evo2 && (
-          <div className="evo2 sidepad2 cursorPointer" onClick={thirdEvo}>
+          <div className="evo2 sidepad2 cursorPointer centerFlex" onClick={thirdEvo}>
             {/* This will hide the 3rd div from appearing if the pokemon doe snot have 3 evolutions */}
             <img src={evoSprite2} alt="" />
             <p className="evolutions">{evo2}</p>
