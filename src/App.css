@@ -55,6 +55,7 @@ body {
 .centers {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .spaceBetween {
@@ -299,6 +300,10 @@ li {
   border-radius: 5px;
 }
 
+.enlarge{
+  width: 2em;
+}
+
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
   from {
@@ -348,7 +353,7 @@ li {
   }
 }
 
-@media (max-width: 640px){
+@media (max-width: 650px){
   .container {
     width: 80%;
   }
@@ -356,6 +361,7 @@ li {
   .hideOnSmall{
     display: none;
   }
+
 
   .flexDown{
     display: flex;
@@ -370,7 +376,11 @@ li {
   }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1080px) {
+
+  .hideOnLarge{
+  display: none;    
+  }
 
 
 }
