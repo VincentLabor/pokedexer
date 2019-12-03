@@ -45,14 +45,14 @@ const NextPokemon = () => {
     <div className="spaceBetween top-mg-2">
       {pokemon === "" || pokemon.id === 1 ? null : (
         <Fragment>
-          <div onClick={previousPage} className="cursorPointer">
+          <div onClick={previousPage} className="cursorPointer prev">
             <p>Previous</p>
             <p>
               #{prevPokeId} {prevPokemonName}
             </p>
             <img src={previousPageSprite} alt="" />
           </div>
-          <div onClick={nextPage} className="cursorPointer">
+          <div onClick={nextPage} className="cursorPointer next">
             <p>Next</p>
             <p>
               #{nextPokeId} {nextPokemonName}

@@ -18,25 +18,27 @@ const Item = () => {
 
   return (
     <Fragment>
-      <div className="silver">
-        <div className="pad2 centers">
-          <p className="pokeNum centerText">
-            {pokedexNum === undefined ? "" : "#" + pokedexNum}
-          </p>
-          <h4 className="pokeName ">{pokeName}</h4>
-        </div>
-        <Sprites />
-        <div className="pad2 centers">
-          <PokeTypes />
-        </div>
-        <p className="centerText">{dexEntry}</p>
+      {pokedexNum === undefined ? null : (
         <div>
-          <PokeEvolutions />
+          <div className="pad2 centers">
+            <p className="pokeNum centerText">
+              {pokedexNum === undefined ? "" : "#" + pokedexNum}
+            </p>
+            <h4 className="pokeName ">{pokeName}</h4>
+          </div>
+          <Sprites />
+          <div className="pad2 centers">
+            <PokeTypes />
+          </div>
+          <p className="centerText">{dexEntry}</p>
+          <div>
+            <PokeEvolutions />
+          </div>
+          <div>
+            <NextPokemon />
+          </div>
         </div>
-        <div>
-          <NextPokemon />
-        </div>
-      </div>
+      )}
     </Fragment>
   );
 };

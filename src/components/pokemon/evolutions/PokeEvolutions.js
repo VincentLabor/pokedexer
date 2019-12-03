@@ -75,10 +75,10 @@ const PokeEvolutions = () => {
       </div>
 
       {/* Container for evolutions*/}
-      <div className="evolved centers">
+      <div className="evolved centers flexDown">
         {/* Base form */}
         {evo1 && (
-          <div className="preEvo sidepad2 cursorPointer" onClick={baseEvo}>
+          <div className="preEvo sidepad2 cursorPointer centerFlex" onClick={baseEvo}>
             <img src={preEvoSprite} alt="" />
             <p className="evolutions">{preEvoName}</p>
           </div>
@@ -86,7 +86,7 @@ const PokeEvolutions = () => {
 
         {/* Arrow Image*/}
         {evo1 && (
-          <div className="evolutionArrows centers">
+          <div className="evolutionArrows centers hideOnSmall">
             <i className="fas fa-long-arrow-alt-right centers"></i>
           </div>
         )}
@@ -101,7 +101,7 @@ const PokeEvolutions = () => {
 
         {/* Arrow Image */}
         {evo2 && (
-          <div className="evolutionArrows">
+          <div className="evolutionArrows hideOnSmall">
             <i className="fas fa-long-arrow-alt-right"></i>
           </div>
         )}
