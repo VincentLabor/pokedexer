@@ -47,7 +47,7 @@ export default (state, action) => {
           ...state,
           nextPageSprite: action.payload.sprites.front_default,
           nextPokemonName: action.payload.name.charAt(0).toUpperCase() + action.payload.name.slice(1),
-          nextPokeId: action.payload.id + 1
+          nextPokeId: action.payload.id
         }
     case GET_POKEMON_NAME:
       return {
@@ -133,18 +133,25 @@ export default (state, action) => {
         pokeType: [],
         api: "",
         evolutions: "",
-        evolveChain: "",
+        evolveChain: [],
         loading: false,
         isShiny: false,
         haveEvolution: null,
-        searchError:
-          "The Pokemon you searched for cannot be found. Please check your spelling",
+        preEvoName: "",
         evo1: "",
         evo2: "",
         evoSprite: "",
         evoSprite2: "",
         preEvoSprite: "",
-        preEvoName: ""
+        nextPokemon: "",
+        prevPokemonName: "",
+        nextPokemonName: "",
+        nextPokeId: "",
+        prevPokeId: "",
+        previousPageSprite: "",
+        nextPageSprite: "",
+        searchError:
+          "The Pokemon you searched for cannot be found. Please check your spelling"
       };
 
     case CLEAR:
@@ -152,8 +159,8 @@ export default (state, action) => {
         ...state,
         pokemon: "",
         sprite: "",
-        pokeName: "",
         dexEntry: "",
+        pokeName: "",
         pokeType: [],
         api: "",
         evolutions: "",
@@ -162,12 +169,19 @@ export default (state, action) => {
         isShiny: false,
         haveEvolution: null,
         searchError: null,
+        preEvoName: "",
         evo1: "",
         evo2: "",
         evoSprite: "",
         evoSprite2: "",
         preEvoSprite: "",
-        preEvoName: ""
+        nextPokemon: "",
+        prevPokemonName: "",
+        nextPokemonName: "",
+        nextPokeId: "",
+        prevPokeId: "",
+        previousPageSprite: "",
+        nextPageSprite: ""
       };
     case REVERT:
       return {

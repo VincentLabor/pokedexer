@@ -280,6 +280,7 @@ const PokemonState = props => {
         prevPokeId: state.prevPokeId,
         previousPageSprite: state.previousPageSprite,
         nextPageSprite: state.nextPageSprite,
+        
         searchPokemon,
         getSprite,
         getDexEntry,
