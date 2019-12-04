@@ -1,11 +1,11 @@
 import React, { useContext, Fragment } from "react";
 import PokemonContext from "../../context/pokemon/pokemonContext";
+import PokemonForms from '../pokemonForms/PokemonForms';
 
 const PokeEvolutions = () => {
   const pokemonContext = useContext(PokemonContext);
 
   const {
-    haveEvolution,
     evo1,
     evo2,
     preEvoName,
@@ -18,7 +18,6 @@ const PokeEvolutions = () => {
     getPokeName,
     getPokeType,
     getEvolutions,
-    error,
     clearAll,
     pokeName
   } = pokemonContext;
@@ -70,7 +69,7 @@ const PokeEvolutions = () => {
       <div className="centers pad2">
         {evo1 && <h3>Evolutions</h3>}
         {pokeName !== "" && evo1 === "" ? (
-          <h3>There are no evolutions</h3>
+          <h3 className="smallFontOnSmallScreen">There are no evolutions</h3>
         ) : null}
       </div>
 
@@ -79,23 +78,27 @@ const PokeEvolutions = () => {
         {/* Base form */}
         {evo1 && (
           <div className="preEvo sidepad2 cursorPointer centerFlex" onClick={baseEvo}>
-            <img src={preEvoSprite} alt="" />
+            <img src={preEvoSprite} className='roundBackground' alt="" />
             <p className="evolutions">{preEvoName}</p>
           </div>
         )}
+
+
+<PokemonForms/>
+
 
         {/* Arrow Image*/}
         {evo1 && (
           <div className="evolutionArrows centers  ">
             <i className="fas fa-angle-right centers hideOnSmall"></i>
-            <i class="fas fa-angle-down icon-large hideOnLarge pd-1 "></i>
+            <i className="fas fa-angle-down icon-large hideOnLarge pd-1 "></i>
           </div>
         )}
 
         {/* First evolution */}
         {evo1 && (
-          <div className="evo1 sidepad2 cursorPointer centerFlex" onClick={secondEvo}>
-            <img src={evoSprite} alt="" />
+          <div className="evo1 sidepad2 cursorPointer centerFlex " onClick={secondEvo}>
+            <img src={evoSprite} alt="" className='roundBackground' />
             <p className="evolutions">{evo1}</p>
           </div>
         )}
@@ -104,7 +107,7 @@ const PokeEvolutions = () => {
         {evo2 && (
           <div className="evolutionArrows  ">
             <i className="fas fa-angle-right hideOnSmall"></i>
-            <i class="fas fa-angle-down icon-large hideOnLarge pd-1 "></i>
+            <i className="fas fa-angle-down icon-large hideOnLarge pd-1 "></i>
           </div>
         )}
 
@@ -112,7 +115,7 @@ const PokeEvolutions = () => {
         {evo2 && (
           <div className="evo2 sidepad2 cursorPointer centerFlex" onClick={thirdEvo}>
             {/* This will hide the 3rd div from appearing if the pokemon doe snot have 3 evolutions */}
-            <img src={evoSprite2} alt="" />
+            <img src={evoSprite2} className='roundBackground' alt="" />
             <p className="evolutions">{evo2}</p>
           </div>
         )}

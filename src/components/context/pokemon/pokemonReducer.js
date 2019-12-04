@@ -18,7 +18,6 @@ import {
   EVO_SPRITE,
   EVO_SPRITE_2,
   PREVIOUS_POKE,
-  NEXT_POKE,
   NEXT_PAGE_SPRITE,
   PREV_PAGE_SPRITE
 } from "../types";
@@ -78,10 +77,11 @@ export default (state, action) => {
         ...state,
         evolveChain: action.payload
       };
-    case SAVE_API:
+    case SAVE_API: //This is for the evolution forms such as eevee and ralts
       return {
         ...state,
-        api: action.payload
+        api: action.payload,
+        loading: false
       };
     case SET_LOADING:
       return {

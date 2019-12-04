@@ -14,11 +14,11 @@ html {
 }
 
 .prev:hover {
-  border: 1px solid red;
+  opacity: .5;
 }
 
 .next:hover {
-  border: 1px solid red;
+  opacity: .5;
 }
 
 body {
@@ -50,6 +50,10 @@ body {
 
 .mr-Sides-1 {
   margin: 0 1em;
+}
+
+.alignRight {
+  text-align: right;
 }
 
 .centers {
@@ -179,6 +183,12 @@ li {
   justify-content: center;
 }
 
+.roundBackground{
+  border: 1px solid #011936;
+  border-radius: 50%;
+  background: #F9DC5C;
+}
+
 .alert {
   padding: 0.7rem;
   margin: 1rem 0;
@@ -300,7 +310,7 @@ li {
   border-radius: 5px;
 }
 
-.enlarge{
+.enlarge {
   width: 2em;
 }
 
@@ -353,33 +363,48 @@ li {
   }
 }
 
-@media (max-width: 650px){
+@media (max-width: 650px) {
   .container {
     width: 80%;
   }
-  
-  .hideOnSmall{
+
+  .hideOnSmall {
     display: none;
   }
 
 
-  .flexDown{
+  .flexDown {
     display: flex;
     flex-direction: column;
     align-items: center;
 
   }
 
-  .centerFlex{
+  .centerFlex {
     align-content: center;
 
   }
+
+  .smallFontOnSmallScreen{
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 750px) {
+  .container {
+    width: 80%;
+  }
+
+  .hideOnLarge {
+    display: none;
+  }
+
 }
 
 @media (min-width: 1080px) {
 
-  .hideOnLarge{
-  display: none;    
+  .hideOnLarge {
+    display: none;
   }
 
 

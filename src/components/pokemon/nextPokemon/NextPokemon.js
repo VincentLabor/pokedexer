@@ -1,13 +1,11 @@
-import React, { useContext, Fragment, useState } from "react";
+import React, { useContext, Fragment } from "react";
 import PokemonContext from "../../context/pokemon/pokemonContext";
 
 const NextPokemon = () => {
   const pokemonContext = useContext(PokemonContext);
 
   const {
-    pokeName,
     pokemon,
-    clearAll,
     searchPokemon,
     getSprite,
     getDexEntry,
@@ -15,7 +13,6 @@ const NextPokemon = () => {
     getPokeType,
     getEvolutions,
     prevPokeId,
-    previousSprite,
     previousPageSprite,
     prevPokemonName,
     nextPageSprite,
@@ -46,19 +43,25 @@ const NextPokemon = () => {
       {pokemon === "" || pokemon.id === 1 ? null : (
         <Fragment>
           <div onClick={previousPage} className="cursorPointer prev">
-            <p>Previous</p>
-            <p>
-              #{prevPokeId} {prevPokemonName}
-            </p>
+            
+            <strong>
+              <p>Previous</p>
+              <p>
+                #{prevPokeId} {prevPokemonName}
+              </p>
+            </strong>
+
             <img src={previousPageSprite} alt="" />
           </div>
           <div onClick={nextPage} className="cursorPointer next">
-            <p>Next</p>
-            <p>
-              #{nextPokeId} {nextPokemonName}
-            </p>
+            <strong>
+              <p className="alignRight">Next</p>
+              <p>
+                #{nextPokeId} {nextPokemonName}
+              </p>
+            </strong>
+
             <img src={nextPageSprite} alt="" />
-            <p></p>
           </div>
         </Fragment>
       )}

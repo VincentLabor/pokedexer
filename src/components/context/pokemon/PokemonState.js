@@ -22,7 +22,6 @@ import {
   EVO_SPRITE_2,
   PRE_EVO_NAME,
   PREVIOUS_POKE,
-  NEXT_POKE,
   NEXT_PAGE_SPRITE,
   PREV_PAGE_SPRITE
 } from "../types";
@@ -34,7 +33,7 @@ const PokemonState = props => {
     dexEntry: "",
     pokeName: "",
     pokeType: [],
-    api: "",
+    api: [],
     evolutions: "",
     evolveChain: [],
     loading: false,
@@ -145,8 +144,10 @@ const PokemonState = props => {
     const res2 = await axios.get(res.data.evolution_chain.url); //This will reach to the evolution section of the API
     dispatch({
       type: SAVE_API,
-      payload: res2.data.chain.evolves_to
+      payload: res2.data.chain.evolves_to //This takes all of the potential evolutions for the pokemon
     });
+
+    console.log(res2.data.chain.evolves_to);
 
     //This is the first evolution. We do it this way because in the chance that a person selects a 2nd evolution, the first evolution will be present.
     dispatch({
@@ -233,6 +234,9 @@ const PokemonState = props => {
   const getPokeType = async pkmn => {
     setLoading();
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
+
+    console.log(res.data.types);
+    
 
     dispatch({
       type: GET_TYPES,

@@ -1,6 +1,7 @@
 import React from "react";
 
 const TypeItem = ({ eleType: { type } }) => {
+  
   return (
     <div className={`mr-Sides-1 ${type.name}`}>
       <p className='space-between pokeType'>
