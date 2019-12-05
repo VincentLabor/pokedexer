@@ -123,7 +123,11 @@ const PokemonState = props => {
       type: GET_SPRITE,
       payload: res.data.sprites
     });
+
+
   };
+
+
 
   //Get the evolutions
   const getEvolutions = async pkmn => {
@@ -143,14 +147,12 @@ const PokemonState = props => {
 
     const res2 = await axios.get(res.data.evolution_chain.url); //This will reach to the evolution section of the API
 
-    console.log(res2.data.chain.evolves_to)
+    // console.log(res2.data.chain.evolves_to)
 
     dispatch({
       type: SAVE_API,
       payload: res2.data.chain.evolves_to //This takes all of the potential evolutions for the pokemon
     });
-
-    // console.log(res2.data.chain.evolves_to);
 
     //This is the first evolution. We do it this way because in the chance that a person selects a 2nd evolution, the first evolution will be present.
     dispatch({
