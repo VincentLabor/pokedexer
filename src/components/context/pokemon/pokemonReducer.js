@@ -80,7 +80,7 @@ export default (state, action) => {
     case SAVE_API: //This is for the evolution forms such as eevee and ralts
       return {
         ...state,
-        api: action.payload,
+        apiEvo: action.payload,
         loading: false
       };
     case SET_LOADING:

@@ -4,9 +4,10 @@ import EvoForms from "./EvoForms";
 
 const PokemonForms = () => {
   const pokemonContext = useContext(PokemonContext);
-  const { api } = pokemonContext;
+  const { apiEvo } = pokemonContext;
 
-  return( <div></div>);
+  return( apiEvo.map((evolutionForms, index)=> <EvoForms key={index} evolutionForms={evolutionForms.evolves_to} /> )); //When you map through, the values in the array are already accounted for. 
+ 
 };
 
 export default PokemonForms;
