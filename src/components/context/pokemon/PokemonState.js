@@ -123,11 +123,7 @@ const PokemonState = props => {
       type: GET_SPRITE,
       payload: res.data.sprites
     });
-
-
   };
-
-
 
   //Get the evolutions
   const getEvolutions = async pkmn => {

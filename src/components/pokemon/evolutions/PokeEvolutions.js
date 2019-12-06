@@ -84,7 +84,7 @@ const PokeEvolutions = () => {
         )}
 
 
-<PokemonForms/>
+{/* <PokemonForms/> */}
 
 
         {/* Arrow Image*/}
