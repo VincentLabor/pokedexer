@@ -173,6 +173,10 @@ li {
   font-size: 10px;
 }
 
+/* .sprites{
+  width: 10em; The visuals unfortunately degrade as we scale them up. 
+} */
+
 .evolutions {
   display: flex;
   justify-content: center;
@@ -363,6 +367,8 @@ li {
   }
 }
 
+/* Making the webpage responsive */
+
 @media (max-width: 650px) {
   .container {
     width: 80%;
@@ -371,7 +377,6 @@ li {
   .hideOnSmall {
     display: none;
   }
-
 
   .flexDown {
     display: flex;
@@ -402,10 +407,6 @@ li {
 }
 
 @media (min-width: 1080px) {
-
-  .hideOnLarge {
-    display: none;
-  }
 
 
 }

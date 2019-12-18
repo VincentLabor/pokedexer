@@ -1,6 +1,7 @@
 import React, { useContext, Fragment } from "react";
 import PokemonContext from "../../context/pokemon/pokemonContext";
 import PokemonForms from '../pokemonForms/PokemonForms';
+import Spinner from "../../layout/Spinner";
 
 const PokeEvolutions = () => {
   const pokemonContext = useContext(PokemonContext);
@@ -19,7 +20,9 @@ const PokeEvolutions = () => {
     getPokeType,
     getEvolutions,
     clearAll,
-    pokeName
+    pokeName,
+    loading,
+    evolveChain
   } = pokemonContext;
 
   const baseEvo = () => {
@@ -64,11 +67,15 @@ const PokeEvolutions = () => {
     }
   };
 
+  if(loading === true && evolveChain === []){
+   return <Spinner/>
+  }
+
   return (
     <Fragment>
       <div className="centers pad2">
         {evo1 && <h3>Evolutions</h3>}
-        {pokeName !== "" && evo1 === "" ? (
+        {evo1 === "" && loading === false ? (
           <h3 className="smallFontOnSmallScreen">There are no evolutions</h3>
         ) : null}
       </div>
