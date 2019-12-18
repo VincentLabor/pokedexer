@@ -96,8 +96,8 @@ const PokeEvolutions = () => {
 
         {/* Arrow Image*/}
         {evo1 && (
-          <div className="evolutionArrows centers  ">
-            <i className="fas fa-angle-right centers hideOnSmall"></i>
+          <div className="">
+            <i className="fas fa-angle-right hideOnSmall"></i>
             <i className="fas fa-angle-down icon-large hideOnLarge pd-1 "></i>
           </div>
         )}
@@ -112,8 +112,8 @@ const PokeEvolutions = () => {
 
         {/* Arrow Image */}
         {evo2 && (
-          <div className="evolutionArrows  ">
-            <i className="fas fa-angle-right hideOnSmall"></i>
+          <div className="  ">
+            <i className="fas fa-angle-right hideOnSmall showDesktop"></i>
             <i className="fas fa-angle-down icon-large hideOnLarge pd-1 "></i>
           </div>
         )}

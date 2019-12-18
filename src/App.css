@@ -4,22 +4,32 @@
   margin: 0;
 }
 
-
 html {
   height: 100%;
+}
+
+.hideOnLarge {
+  display: none;
 }
 
 .cursorPointer {
   cursor: pointer;
 }
 
+/* Styles for the next and previous pokemon */
+
 .prev:hover {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .next:hover {
-  opacity: .5;
+  opacity: 0.5;
 }
+
+.floatRight{
+  float: right;
+}
+
 
 body {
   font-family: "Roboto", sans-serif;
@@ -34,7 +44,7 @@ body {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  background: #ED254E;
+  background: #ed254e;
   color: black;
   align-items: center;
   /*This makes sure the items on the navbar are completely aligned*/
@@ -96,7 +106,6 @@ li {
   padding: 2em 2em;
   background: whitesmoke;
   height: 100%;
-
 }
 
 .pkSearch {
@@ -116,25 +125,25 @@ li {
 .goSubmit {
   border-radius: 10px;
   border: 1px solid #ccc;
-  background: #C21F40;
+  background: #c21f40;
   padding: 0.3em;
 }
 
 .goSubmit:hover {
-  background: #ED254E;
+  background: #ed254e;
 }
 
 .removeContent {
   width: 100%;
   border-radius: 10px;
   border: 1px solid #ccc;
-  background: #F4FFFD;
+  background: #f4fffd;
   padding: 0.3em;
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
 .removeContent:hover {
-  background: #F5F5F5;
+  background: #f5f5f5;
 }
 
 .pad2 {
@@ -187,10 +196,10 @@ li {
   justify-content: center;
 }
 
-.roundBackground{
+.roundBackground {
   border: 1px solid #011936;
   border-radius: 50%;
-  background: #F9DC5C;
+  background: #f9dc5c;
 }
 
 .alert {
@@ -280,7 +289,7 @@ li {
 }
 
 .flying {
-  background: #A890F0;
+  background: #a890f0;
   border-radius: 5px;
 }
 
@@ -305,12 +314,12 @@ li {
 }
 
 .steel {
-  background: #B8B8D0;
+  background: #b8b8d0;
   border-radius: 5px;
 }
 
 .fairy {
-  background: #EE98AC;
+  background: #ee98ac;
   border-radius: 5px;
 }
 
@@ -369,28 +378,36 @@ li {
 
 /* Making the webpage responsive */
 
-@media (max-width: 650px) {
+@media (max-width: 550px) {
   .container {
-    width: 80%;
+    width: 85%;
   }
 
+  .smallTextMobile {
+    font-weight: 200;
+  }
+
+  .smallOnMobile {
+    width: 5em;
+  }
+
+ 
+
   .hideOnSmall {
-    display: none;
+    display: none !important;
   }
 
   .flexDown {
     display: flex;
     flex-direction: column;
     align-items: center;
-
   }
 
   .centerFlex {
     align-content: center;
-
   }
 
-  .smallFontOnSmallScreen{
+  .smallFontOnSmallScreen {
     font-size: 15px;
   }
 }
@@ -401,12 +418,14 @@ li {
   }
 
   .hideOnLarge {
-    display: none;
+    display: none !important;
   }
 
 }
 
-@media (min-width: 1080px) {
+@media (max-width: 750px) {
+}
 
+@media (max-width: 1080px) {
 
 }
