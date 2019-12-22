@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, Fragment } from "react";
 import PokemonContext from "../context/pokemon/pokemonContext";
 import AlertContext from "../context/alert/alertContext";
 
@@ -29,6 +29,24 @@ const Search = () => {
     setPkmn("");
     clearAll();
   };
+
+  const randomized = ()=>{
+
+    const pkmn = Math.floor(Math.random()*800) + 1;
+
+    try {
+      clearAll();
+      searchPokemon(pkmn);
+      getSprite(pkmn);
+      getDexEntry(pkmn);
+      getPokeName(pkmn);
+      getPokeType(pkmn);
+      getEvolutions(pkmn);
+      setPkmn("");
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const onSubmit = e => {
     e.preventDefault(); //Prevents a new page from opening.
@@ -66,6 +84,11 @@ const Search = () => {
         />
         <input type="submit" value="Go" className="goSubmit" />
       </form>
+
+      <button className="randomizer" onClick={randomized}>
+          Random search
+        </button>
+
       {pokemon !== "" ? (
         <button className="removeContent" onClick={onClick}>
           Clear

@@ -23,3 +23,4 @@ export const PREVIOUS_POKE = "PREVIOUS_POKE";
 export const NEXT_POKE = "NEXT_POKE";
 export const NEXT_PAGE_SPRITE = "NEXT_POKE";
 export const PREV_PAGE_SPRITE = "PREV_PAGE_SPRITE";
+export const STACK_SPRITE = "STACK_SPRITE";

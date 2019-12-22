@@ -19,7 +19,8 @@ import {
   EVO_SPRITE_2,
   PREVIOUS_POKE,
   NEXT_PAGE_SPRITE,
-  PREV_PAGE_SPRITE
+  PREV_PAGE_SPRITE,
+  STACK_SPRITE
 } from "../types";
 
 export default (state, action) => {
@@ -33,21 +34,28 @@ export default (state, action) => {
     case PREVIOUS_POKE:
       return {
         ...state,
-        prevPokeId: action.payload
+        prevPokeId: action.payload,
+        loading: false
       };
-      case PREV_PAGE_SPRITE:
-        return{
-          ...state,
-          previousPageSprite: action.payload.sprites.front_default,
-          prevPokemonName: action.payload.name.charAt(0).toUpperCase() + action.payload.name.slice(1)
-        }
-      case NEXT_PAGE_SPRITE:
-        return{
-          ...state,
-          nextPageSprite: action.payload.sprites.front_default,
-          nextPokemonName: action.payload.name.charAt(0).toUpperCase() + action.payload.name.slice(1),
-          nextPokeId: action.payload.id
-        }
+    case PREV_PAGE_SPRITE:
+      return {
+        ...state,
+        previousPageSprite: action.payload.sprites.front_default,
+        prevPokemonName:
+          action.payload.name.charAt(0).toUpperCase() +
+          action.payload.name.slice(1),
+          loading: false
+      };
+    case NEXT_PAGE_SPRITE:
+      return {
+        ...state,
+        nextPageSprite: action.payload.sprites.front_default,
+        nextPokemonName:
+          action.payload.name.charAt(0).toUpperCase() +
+          action.payload.name.slice(1),
+        nextPokeId: action.payload.id,
+        loading: false
+      };
     case GET_POKEMON_NAME:
       return {
         ...state,
@@ -75,12 +83,21 @@ export default (state, action) => {
     case GET_EVOLUTIONS:
       return {
         ...state,
-        evolveChain: action.payload
+        evolveChain: action.payload,
+        loading: false
       };
     case SAVE_API: //This is for the evolution forms such as eevee and ralts
       return {
         ...state,
         apiEvo: action.payload,
+        stackSprite: [...state.stackSprite, action.payload],
+        loading: false
+      };
+    case STACK_SPRITE:
+      // console.log(action.payload);
+
+      return {
+        ...state,
         loading: false
       };
     case SET_LOADING:
@@ -91,37 +108,44 @@ export default (state, action) => {
     case HAVE_EVOLUTION:
       return {
         ...state,
-        haveEvolution: true
+        haveEvolution: true,
+        loading: false
       };
     case STORE_EVOLUTIONS:
       return {
         ...state,
-        evo1: action.payload
+        evo1: action.payload,
+        loading: false
       };
     case STORE_2ND_EVO:
       return {
         ...state,
-        evo2: action.payload
+        evo2: action.payload,
+        loading: false
       };
     case EVO_SPRITE:
       return {
         ...state,
-        evoSprite: action.payload
+        evoSprite: action.payload,
+        loading: false
       };
     case EVO_SPRITE_2:
       return {
         ...state,
-        evoSprite2: action.payload
+        evoSprite2: action.payload,
+        loading: false
       };
     case PRE_EVO_NAME:
       return {
         ...state,
-        preEvoName: action.payload
+        preEvoName: action.payload,
+        loading: false
       };
     case PRE_EVO:
       return {
         ...state,
-        preEvoSprite: action.payload
+        preEvoSprite: action.payload,
+        loading: false
       };
     case SEARCH_FAIL:
       return {
