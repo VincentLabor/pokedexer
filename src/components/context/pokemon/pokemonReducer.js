@@ -186,7 +186,7 @@ export default (state, action) => {
         dexEntry: "",
         pokeName: "",
         pokeType: [],
-        api: "",
+        apiEvo: [],
         evolutions: "",
         evolveChain: [],
         loading: false,
@@ -194,7 +194,7 @@ export default (state, action) => {
         haveEvolution: null,
         searchError: null,
         preEvoName: "",
-        evo1: "",
+        evo1: null,
         evo2: "",
         evoSprite: "",
         evoSprite2: "",
@@ -205,7 +205,8 @@ export default (state, action) => {
         nextPokeId: "",
         prevPokeId: "",
         previousPageSprite: "",
-        nextPageSprite: ""
+        nextPageSprite: "",
+        stackSprite: []
       };
     case REVERT:
       return {
