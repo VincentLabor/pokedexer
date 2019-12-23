@@ -67,7 +67,7 @@ const PokeEvolutions = () => {
     }
   };
 
-  if (loading === true && evolveChain === []) {
+  if (loading) {
     return <Spinner />;
   }
 
@@ -75,9 +75,9 @@ const PokeEvolutions = () => {
     <Fragment>
       <div className="centers pad2">
         {evo1 && <h3>Evolutions</h3>}
-        {evo1 === "" && loading === false && evo2 === ""? (
+        {/* {evo1 === "" && evo2 && loading === false ? (
           <h3 className="smallFontOnSmallScreen">There are no evolutions</h3>
-        ) : null}
+        ) : null} */}
       </div>
 
       {/* Container for evolutions*/}
