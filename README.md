@@ -1,5 +1,10 @@
-Pokedex (name subject to change)
+# Pokedexer
 
-This is an application to search up pokemon and take an in-depth look at the pokemon and the details involved. 
+### Motivation
 
-Formally, this application will be used to learn and explore react. 
+This is an application was made to create a fun application involving Pokemon while still exploring how to use React and as well as access Poke Api.  
+
+### Tech Used
+This project was built with:
+- React
+- Express
