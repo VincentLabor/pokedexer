@@ -24,10 +24,10 @@ import {
   PREVIOUS_POKE,
   NEXT_PAGE_SPRITE,
   PREV_PAGE_SPRITE,
-  STACK_SPRITE
+  STACK_SPRITE,
 } from "../types";
 
-const PokemonState = props => {
+const PokemonState = (props) => {
   const initialState = {
     pokemon: "",
     sprite: "",
@@ -54,81 +54,88 @@ const PokemonState = props => {
     prevPokeId: "",
     previousPageSprite: "",
     nextPageSprite: "",
-    stackSprite: []
+    stackSprite: [],
   };
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
 
-  const searchPokemon = async pkmn => {
+  const searchPokemon = async (pkmn) => {
     setLoading();
     clearAll();
 
     try {
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
-
       dispatch({
         type: GET_POKEMON,
-        payload: res.data
+        payload: res.data,
       });
 
-      dispatch({
-        //This is to catch the previous pokemon's id
-        type: PREVIOUS_POKE,
-        payload: res.data.id - 1
-      });
-
-      //This is for the name and sprite of the previous page pokemon
-      const res2 = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${res.data.id - 1}/`
-      );
-
-      dispatch({
-        type: PREV_PAGE_SPRITE,
-        payload: res2.data
-      });
-
-      const res3 = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${res.data.id + 1}/`
-      );
-
-      dispatch({
-        type: NEXT_PAGE_SPRITE,
-        payload: res3.data
-      }); 
+//refactor code here
+dispatch(getPrevPokemon(res.data.id - 1))
+dispatch(getNextPokemon(res.data.id + 1))
 
     } catch (err) {
       console.log(err);
       dispatch({
-        type: SEARCH_FAIL
+        type: SEARCH_FAIL,
       });
 
       setTimeout(() => dispatch({ type: REVERT }), 6400);
     }
   };
 
+  const getPrevPokemon = async (pokeId)=>{
+    dispatch({
+      //This is to catch the previous pokemon's id
+      type: PREVIOUS_POKE,
+      payload: pokeId - 1,
+    });
+
+    //This is for the name and sprite of the previous page pokemon
+    const res2 = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${pokeId - 1}/`
+    );
+
+    dispatch({
+      type: PREV_PAGE_SPRITE,
+      payload: res2.data,
+    });
+  }
+
+  const getNextPokemon = async (pokeId)=>{
+    const res3 = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${pokeId + 1}/`
+    );
+
+    dispatch({
+      type: NEXT_PAGE_SPRITE,
+      payload: res3.data,
+    });
+  }
+
   //Get the name of the pokemon
-  const getPokeName = async pkmn => {
+  const getPokeName = async (pkmn) => {
     setLoading();
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
     dispatch({
       type: GET_POKEMON_NAME,
-      payload: res.data.name.charAt(0).toUpperCase() + res.data.name.slice(1)
+      payload: res.data.name.charAt(0).toUpperCase() + res.data.name.slice(1),
     });
   };
 
   //Get the sprite of the pokemon
-  const getSprite = async pkmn => {
+  const getSprite = async (pkmn) => {
     setLoading();
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
 
     dispatch({
       type: GET_SPRITE,
-      payload: res.data.sprites
+      payload: res.data.sprites,
     });
   };
 
   //Get the evolutions
-  const getEvolutions = async pkmn => {
+  const getEvolutions = async (pkmn) => {
     setLoading();
 
     const res = await axios.get(
@@ -136,7 +143,7 @@ const PokemonState = props => {
     );
     dispatch({
       type: GET_EVOLUTIONS,
-      payload: res.data.evolution_chain.url
+      payload: res.data.evolution_chain.url,
     });
 
     if (res.data.evolves_from_species !== null) {
@@ -147,19 +154,21 @@ const PokemonState = props => {
 
     dispatch({
       type: SAVE_API,
-      payload: res2.data.chain.evolves_to //This takes all of the potential evolutions for the pokemon
+      payload: res2.data.chain.evolves_to, //This takes all of the potential evolutions for the pokemon
     });
-    
-    //Consider what can be done in the previous call to the reducer here. 
-     const resFind = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
+
+    //Consider what can be done in the previous call to the reducer here.
+    const resFind = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${pkmn}/`
+    );
 
     //const resFind = await res2.data.chain.evolves_to.map(pkForm=> axios.get(`https://pokeapi.co/api/v2/pokemon/${pkForm.species.name}`));
 
-    console.log(resFind)
+    console.log(resFind);
 
     dispatch({
       type: STACK_SPRITE,
-      payload: resFind
+      payload: resFind,
     });
 
     //This is the first evolution. We do it this way because in the chance that a person selects a 2nd evolution, the first evolution will be present.
@@ -167,7 +176,7 @@ const PokemonState = props => {
       type: PRE_EVO_NAME,
       payload:
         res2.data.chain.species.name.charAt(0).toUpperCase() +
-        res2.data.chain.species.name.slice(1)
+        res2.data.chain.species.name.slice(1),
     });
 
     const thirdResponse = await axios.get(
@@ -176,7 +185,7 @@ const PokemonState = props => {
 
     dispatch({
       type: PRE_EVO,
-      payload: thirdResponse.data.sprites.front_default
+      payload: thirdResponse.data.sprites.front_default,
     });
 
     //2nd Evolution
@@ -185,7 +194,7 @@ const PokemonState = props => {
         type: STORE_EVOLUTIONS,
         payload:
           res2.data.chain.evolves_to[0].species.name.charAt(0).toUpperCase() +
-          res2.data.chain.evolves_to[0].species.name.slice(1)
+          res2.data.chain.evolves_to[0].species.name.slice(1),
       });
 
       const fourthResponse = await axios.get(
@@ -194,7 +203,7 @@ const PokemonState = props => {
 
       dispatch({
         type: EVO_SPRITE,
-        payload: fourthResponse.data.sprites.front_default
+        payload: fourthResponse.data.sprites.front_default,
       });
     }
 
@@ -210,12 +219,12 @@ const PokemonState = props => {
           res2.data.chain.evolves_to[0].evolves_to[0].species.name
             .charAt(0)
             .toUpperCase() +
-          res2.data.chain.evolves_to[0].evolves_to[0].species.name.slice(1)
+          res2.data.chain.evolves_to[0].evolves_to[0].species.name.slice(1),
       });
 
       dispatch({
         type: EVO_SPRITE_2,
-        payload: fifthResponse.data.sprites.front_default
+        payload: fifthResponse.data.sprites.front_default,
       });
     } catch (error) {
       console.log(error);
@@ -228,7 +237,7 @@ const PokemonState = props => {
   };
 
   //Get the pokedex text entry
-  const getDexEntry = async pkmn => {
+  const getDexEntry = async (pkmn) => {
     setLoading();
     const res = await axios.get(
       `https://pokeapi.co/api/v2/pokemon-species/${pkmn}/`
@@ -238,36 +247,34 @@ const PokemonState = props => {
       if (res.data.flavor_text_entries[i].language.name === "en") {
         dispatch({
           type: GET_DEXENTRY,
-          payload: res.data.flavor_text_entries[i].flavor_text
+          payload: res.data.flavor_text_entries[i].flavor_text,
         });
       }
     }
   };
 
   //Get the pokemon's typings
-  const getPokeType = async pkmn => {
+  const getPokeType = async (pkmn) => {
     setLoading();
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pkmn}/`);
 
     dispatch({
       type: GET_TYPES,
-      payload: res.data.types //This displays numbered stuff which is okay.
+      payload: res.data.types, //This displays numbered stuff which is okay.
     });
   };
-
-  
 
   //The loading
   const setLoading = () => {
     dispatch({
-      type: SET_LOADING
+      type: SET_LOADING,
     });
   };
 
   //The clear/Reset
   const clearAll = () => {
     dispatch({
-      type: CLEAR
+      type: CLEAR,
     });
   };
 
@@ -307,7 +314,6 @@ const PokemonState = props => {
         // getSprite2,
         checkEvolution,
         clearAll,
-        
       }}
     >
       {props.children}
