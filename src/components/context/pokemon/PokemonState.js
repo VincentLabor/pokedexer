@@ -59,6 +59,10 @@ const PokemonState = (props) => {
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
 
+  const basicRegex = async (string) =>{
+    return string.replace
+  }
+
   const searchPokemon = async (pkmn) => {
     setLoading();
     clearAll();
@@ -162,8 +166,6 @@ dispatch(getNextPokemon(res.data.id + 1))
       `https://pokeapi.co/api/v2/pokemon/${pkmn}/`
     );
 
-    //const resFind = await res2.data.chain.evolves_to.map(pkForm=> axios.get(`https://pokeapi.co/api/v2/pokemon/${pkForm.species.name}`));
-
     console.log(resFind);
 
     dispatch({
@@ -247,7 +249,7 @@ dispatch(getNextPokemon(res.data.id + 1))
       if (res.data.flavor_text_entries[i].language.name === "en") {
         dispatch({
           type: GET_DEXENTRY,
-          payload: res.data.flavor_text_entries[i].flavor_text,
+          payload: res.data.flavor_text_entries[i].flavor_text.replace(/[^a-zA-Z'’,.-é]/g, " "),
         });
       }
     }

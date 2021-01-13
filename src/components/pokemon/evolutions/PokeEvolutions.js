@@ -20,9 +20,7 @@ const PokeEvolutions = () => {
     getPokeType,
     getEvolutions,
     clearAll,
-    pokeName,
     loading,
-    evolveChain
   } = pokemonContext;
 
   const baseEvo = () => {
@@ -73,12 +71,7 @@ const PokeEvolutions = () => {
 
   return (
     <Fragment>
-      <div className="centers pad2">
-        {evo1 && <h3>Evolutions</h3>}
-        {/* {evo1 === "" && evo2 && loading === false ? (
-          <h3 className="smallFontOnSmallScreen">There are no evolutions</h3>
-        ) : null} */}
-      </div>
+      <div className="centers pad2">{evo1 && <h3>Evolutions</h3>}</div>
 
       {/* Container for evolutions*/}
       <div className="evolved centers flexDown ">
@@ -120,9 +113,7 @@ const PokeEvolutions = () => {
           </div>
         )}
 
-        
         {/* <PokemonForms /> */}
-        
 
         {/* Second evolution */}
         {evo2 && (
