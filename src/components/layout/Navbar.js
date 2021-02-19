@@ -1,18 +1,30 @@
-import React, { Fragment } from 'react';
-import {Link} from 'react-router-dom';
+import React, { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
+import PokemonContext from "../context/pokemon/pokemonContext";
 
 const Navbar = () => {
-    return (
-        <Fragment>
-            <div className="nav pd-1">
-                <h1>Pokedex</h1>
-                <ul>
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/about'>About</Link></li>
-                </ul>
-            </div>
-        </Fragment>
-    )
-}
+    const pokemonContext = useContext(PokemonContext);
+  const { clearAll } = pokemonContext;
 
-export default Navbar
+  const reset = () => {
+    clearAll();
+  };
+
+  return (
+    <Fragment>
+      <div className="nav pd-1">
+        <h1 onClick={reset} className="cursorPointer">Pokedex</h1>
+        <ul>
+          <li onClick={reset} className="cursorPointer">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="cursorPointer">
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+      </div>
+    </Fragment>
+  );
+};
+
+export default Navbar;
