@@ -8,10 +8,75 @@ html {
   height: 100%;
 }
 
+input {
+  outline: none;
+  background: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@-webkit-keyframes autofill {
+  to {
+      color: #666;
+      background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+
+button {
+  outline: none;
+}
+
 .cursorPointer {
   cursor: pointer;
 }
 
+.clearBorder {
+  border: 0px;
+}
+
+/* Colors */
+.blackText {
+  color: black;
+}
+
+.brightRed {
+  background: #c21f40;
+}
+
+.silver {
+  background: silver;
+}
+
+.fullHeight {
+  height: 100%;
+  max-height: 100%;
+}
+
+.redText {
+  color: #c21f40;
+}
+
+.whiteBackground {
+  background: white;
+}
 /* Styles for the next and previous pokemon */
 
 .prev:hover {
@@ -26,14 +91,22 @@ html {
   float: right;
 }
 
+.flex1line {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
 
+.whiteText {
+  color: white;
+}
 
 body {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: black;
-  background: #333;
+  background: whitesmoke;
   height: 100%;
 }
 
@@ -88,7 +161,6 @@ a {
 }
 
 .nav a {
-  color: #fff;
   padding: 0.45rem 1rem;
   margin: 0 0.25rem;
 }
@@ -106,51 +178,67 @@ li {
 }
 
 .pkSearch {
-  display: flex;
-  flex-direction: column;
+}
+
+.shorterWidth {
+  width: 65%;
+  max-width: 100%;
+}
+
+.smallWidth{
+  width: 20%;
 }
 
 .search {
   width: 100%;
-  padding: 0.5em;
+  padding: 1em;
   display: block;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  margin-bottom: 2em;
+  border-right: 0px;
+}
+
+.rightBorder {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.inputTextSize {
+  font-size: 20px;
 }
 
 .goSubmit {
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  background: #c21f40;
-  padding: 0.3em;
+  width: 5%;
+  max-width: 30%;
+  font-weight: bold;
 }
 
-.goSubmit:hover {
-  background: #ed254e;
+.hideOutline {
+  outline: none;
 }
 
-.randomizer{
+.submitBtn {
+  background: #f5f5f5;
+}
+
+.randomizer {
   width: 100%;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  background: #ff7d91;
+  background-color: inherit;
   padding: 0.3em;
-  margin-top: 0.5em;
+  margin-top: 2em;
 }
 
-.randomizer:hover{
+/* .randomizer:hover {
   background: #c21f40;
-}
+} */
 
-.removeContent {
+/* .removeContent {
   width: 100%;
-  border-radius: 10px;
   border: 1px solid #ccc;
   background: #f4fffd;
   padding: 0.3em;
   margin-top: 0.5em;
-}
+} */
 
 .removeContent:hover {
   background: #f5f5f5;
@@ -399,6 +487,11 @@ li {
 
   .smallOnMobile {
     width: 5em;
+  }
+
+  .goSubmit{
+    width: 30%;
+    max-width: 100%;
   }
 
   .hideOnSmall {

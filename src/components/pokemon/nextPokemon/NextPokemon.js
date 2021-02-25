@@ -45,7 +45,7 @@ const NextPokemon = () => {
           <div onClick={previousPage} className="cursorPointer prev">
             
             <strong className="smallTextMobile">
-              <p>Previous</p>
+              <p className="redText">Previous</p>
               <p>
                 #{prevPokeId} {prevPokemonName}
               </p>
@@ -55,7 +55,7 @@ const NextPokemon = () => {
           </div>
           <div onClick={nextPage} className="cursorPointer next ">
             <strong className="smallTextMobile">
-              <p className="alignRight">Next</p>
+              <p className="alignRight redText">Next</p>
               <p className="alignRight">
                 #{nextPokeId} {nextPokemonName}
               </p>

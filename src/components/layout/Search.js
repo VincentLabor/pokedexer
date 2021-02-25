@@ -17,11 +17,11 @@ const Search = () => {
     getEvolutions,
     error,
     clearAll,
-    pokemon
+    pokemon,
   } = pokemonContext;
   // const {setAlert} = alertContext;
 
-  const onChange = e => {
+  const onChange = (e) => {
     setPkmn(e.target.value);
   };
 
@@ -30,9 +30,8 @@ const Search = () => {
     clearAll();
   };
 
-  const randomized = ()=>{
-
-    const pkmn = Math.floor(Math.random()*800) + 1;
+  const randomized = () => {
+    const pkmn = Math.floor(Math.random() * 800) + 1;
 
     try {
       clearAll();
@@ -44,11 +43,11 @@ const Search = () => {
       getEvolutions(pkmn);
       setPkmn("");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault(); //Prevents a new page from opening.
     try {
       searchPokemon(pkmn.toLowerCase());
@@ -71,29 +70,40 @@ const Search = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit} className="pkSearch">
+    <div classname="">
+      <form onSubmit={onSubmit} className="flex1line">
         <input
           type="text"
           name="pkmn"
           value={pkmn}
           onChange={onChange}
           placeholder="E.g. Lugia, Rhyhorn, Swampert, etc..."
-          className="search"
+          className="search inputTextSize"
           required
         />
-        <input type="submit" value="Go" className="goSubmit" />
+        <button
+          type="submit"
+          className="goSubmit hideOutline clearBorder whiteText brightRed cursorPointer whiteBackground rightBorder"
+        >
+          <i class="fas fa-search redText"></i>
+        </button>
+
+        {pokemon !== "" ? (
+          <button
+            className="goSubmit clearBorder brightRed cursorPointer "
+            onClick={onClick}
+          >
+            Clear
+          </button>
+        ) : null}
       </form>
 
-      <button className="randomizer" onClick={randomized}>
-          Random search
-        </button>
-
-      {pokemon !== "" ? (
-        <button className="removeContent" onClick={onClick}>
-          Clear
-        </button>
-      ) : null}
+      <button
+        className="randomizer clearBorder cursorPointer smallWidth"
+        onClick={randomized}
+      >
+        Want to see a random Pokemon? Click here
+      </button>
     </div>
   );
 };

@@ -15,10 +15,10 @@ const Navbar = () => {
       <div className="nav pd-1">
         <h1 onClick={reset} className="cursorPointer">Pokedex</h1>
         <ul>
-          <li onClick={reset} className="cursorPointer">
+          <li onClick={reset} className="cursorPointer blackText">
             <Link to="/">Home</Link>
           </li>
-          <li className="cursorPointer">
+          <li className="cursorPointer blackText">
             <Link to="/about">About</Link>
           </li>
         </ul>
