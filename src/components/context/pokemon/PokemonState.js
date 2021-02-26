@@ -244,7 +244,7 @@ dispatch(getNextPokemon(res.data.id + 1))
     const res = await axios.get(
       `https://pokeapi.co/api/v2/pokemon-species/${pkmn}/`
     );
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 15; i++) {
       //When you use a for loop or a for each, this only displays the last entry available.
       if (res.data.flavor_text_entries[i].language.name === "en") {
         dispatch({
